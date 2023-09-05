@@ -1,0 +1,56 @@
+:root {
+  --primaryColor: #1d1d1d;
+  --secondaryColor: #004a9f;
+  --terciaryColor: #831c1c;
+  --white: #fff;
+  --black: #000;
+  --primaryFont: "Mulish", sans-serif;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  font-family: var(--primaryFont);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
