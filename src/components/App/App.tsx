@@ -1,5 +1,11 @@
+import Header from "../Header/Header";
+
 const App = (): React.ReactElement => {
-  return <div className="container"></div>;
+  return (
+    <div className="container">
+      <Header />
+    </div>
+  );
 };
 
 export default App;
