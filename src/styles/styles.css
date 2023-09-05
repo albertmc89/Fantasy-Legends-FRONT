@@ -1,7 +1,8 @@
 :root {
   --primaryColor: #1d1d1d;
   --secondaryColor: #004a9f;
-  --terciaryColor: #831c1c;
+  --buttonLogOutColor: #831c1c;
+  --mainButtonColor: #101010;
   --white: #fff;
   --black: #000;
   --primaryFont: "Mulish", sans-serif;
