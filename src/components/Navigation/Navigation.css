@@ -1,0 +1,19 @@
+.navigation {
+  font-size: 1rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+.navigation-list {
+  color: var(--white);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 13px;
+}
+
+.navigation-link.active {
+  border-bottom: 1px solid var(--white);
+}
