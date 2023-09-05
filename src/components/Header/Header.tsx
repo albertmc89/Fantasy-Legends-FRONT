@@ -8,8 +8,8 @@ const Header = (): React.ReactElement => {
         <img
           src="./img/logo.png"
           alt="logo ball with blue and yellor colors"
-          width={44}
-          height={44}
+          width={45}
+          height={45}
         />
       </div>
       <Navigation />
