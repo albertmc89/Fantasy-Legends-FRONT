@@ -1,3 +1,4 @@
+import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 
 const Header = (): React.ReactElement => {
@@ -11,6 +12,7 @@ const Header = (): React.ReactElement => {
           height={44}
         />
       </div>
+      <Navigation />
     </header>
   );
 };
