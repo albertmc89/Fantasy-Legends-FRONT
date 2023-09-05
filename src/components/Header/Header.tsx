@@ -1,4 +1,3 @@
-import Button from "../Button/Button";
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 
@@ -14,11 +13,6 @@ const Header = (): React.ReactElement => {
         />
       </div>
       <Navigation />
-      <Button
-        className="button red-button"
-        text="Log out"
-        actionOnClick={() => {}}
-      />
     </header>
   );
 };
