@@ -6,7 +6,7 @@ const Navigation = (): React.ReactElement => {
   return (
     <>
       <nav className="navigation">
-        <ul className="navigation-list">
+        <ul className="navigation__list">
           <li>
             <NavLink className="navigation-link" to="/home">
               Home

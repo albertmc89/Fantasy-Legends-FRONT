@@ -1,0 +1,70 @@
+.main-container {
+  background-image: url(/public/img/background-login.webp);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  padding: 16px 0;
+  border-radius: 5px;
+  width: 220px;
+  height: 240px;
+  margin: 0 auto;
+  background-color: rgb(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.login-container__avatar {
+  width: 52px;
+  height: 53px;
+  border-radius: 50%;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container__image {
+  width: 32.5px;
+  height: 35px;
+}
+
+.login-container__title-container {
+  color: var(--white);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-container__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+p {
+  padding: 0 20px;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.black-login {
+  background-color: rgba(51, 51, 51, 0.8);
+  color: var(--white);
+  width: 120px;
+  height: 45px;
+  border-radius: 5px;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
