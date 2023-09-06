@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "../../pages/HomePage/HomePage";
 import Header from "../Header/Header";
+import PlayersListPage from "../../pages/PlayersListPage/PlayersListPage";
 
 const App = (): React.ReactElement => {
   return (
@@ -8,11 +8,10 @@ const App = (): React.ReactElement => {
       <Header />
       <main className="main-content">
         <Routes>
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/home" element={<PlayersListPage />} />
           <Route path="/" element={<Navigate to="/home" />} />
         </Routes>
       </main>
-      <HomePage />
     </div>
   );
 };
