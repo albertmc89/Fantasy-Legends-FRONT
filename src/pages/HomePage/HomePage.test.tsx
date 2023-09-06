@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 
 describe("Given a HomePage page", () => {
-  describe("When it's rendered 'Welcome' is logged in", () => {
+  describe("When it's rendered", () => {
     test("Then it should show the text 'Welcome'", () => {
       const headerText = "Welcome";
 

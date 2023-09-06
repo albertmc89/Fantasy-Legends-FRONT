@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "../Header/Header";
-import PlayersListPage from "../../pages/PlayersListPage/PlayersListPage";
+import HomePage from "../../pages/HomePage/HomePage";
 
 const App = (): React.ReactElement => {
   return (
@@ -8,7 +8,7 @@ const App = (): React.ReactElement => {
       <Header />
       <main className="main-content">
         <Routes>
-          <Route path="/home" element={<PlayersListPage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/" element={<Navigate to="/home" />} />
         </Routes>
       </main>
