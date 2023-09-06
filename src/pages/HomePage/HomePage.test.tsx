@@ -1,6 +1,4 @@
-import { Provider } from "react-redux";
 import HomePage from "./HomePage";
-import { store } from "../../store";
 import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 
@@ -10,11 +8,9 @@ describe("Given a HomePage page", () => {
       const headerText = "Welcome";
 
       render(
-        <Provider store={store}>
-          <BrowserRouter>
-            <HomePage />
-          </BrowserRouter>
-        </Provider>,
+        <BrowserRouter>
+          <HomePage />
+        </BrowserRouter>,
       );
 
       const heading = screen.getByRole("heading", { name: headerText });
@@ -26,9 +22,9 @@ describe("Given a HomePage page", () => {
       const expectedText = "Log in";
 
       render(
-        <Provider store={store}>
+        <BrowserRouter>
           <HomePage />
-        </Provider>,
+        </BrowserRouter>,
       );
 
       const button = screen.getByRole("button", { name: expectedText });
