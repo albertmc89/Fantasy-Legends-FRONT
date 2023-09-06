@@ -1,11 +1,23 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+import { User } from "firebase/auth";
+import userEvent from "@testing-library/user-event";
+
+vi.mock("firebase/auth");
+
+const user: Partial<User> = { displayName: "Amigo" };
+const authStateHookMock: Partial<AuthStateHook> = [user as User];
 
 describe("Given a App component", () => {
-  describe("When it's rendered", () => {
-    test("Then it should show a 'logo ball with blue and yellor colors'", () => {
-      const imageAltText = "logo ball with blue and yellor colors";
+  describe("When the user is not logged in", () => {
+    test("Then it should show 'Welcome' inside a heading", () => {
+      const headingText = "Welcome";
+
+      const authStateHookMock: Partial<AuthStateHook> = [undefined];
+
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
       render(
         <BrowserRouter>
@@ -13,9 +25,65 @@ describe("Given a App component", () => {
         </BrowserRouter>,
       );
 
-      const imageElement = screen.getByAltText(imageAltText);
+      const heading = screen.getByRole("heading", { name: headingText });
 
-      expect(imageElement).toBeInTheDocument();
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When it's rendered and user is logged", () => {
+    test("Then it should show a page with the text 'Players' inside a heading", async () => {
+      const headingText = "Players";
+      const buttonText = "Log in";
+
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>,
+      );
+
+      const loginButton = screen.getByRole("button", {
+        name: buttonText,
+      });
+      await userEvent.click(loginButton);
+
+      waitFor(() => {
+        const heading = screen.getByRole("heading", {
+          name: headingText,
+        });
+
+        expect(heading).toBeInTheDocument();
+      });
+    });
+
+    describe("When the button 'Log out' is clicked", () => {
+      test("Then it should show a page with a 'Welcome' inside a heading", async () => {
+        const headingText = "Welcome";
+        const buttonText = "Log out";
+
+        auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+        render(
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>,
+        );
+
+        const logoutButton = screen.getByRole("button", {
+          name: buttonText,
+        });
+        await userEvent.click(logoutButton);
+
+        waitFor(() => {
+          const heading = screen.getByRole("heading", {
+            name: headingText,
+          });
+
+          expect(heading).toBeInTheDocument();
+        });
+      });
     });
   });
 });

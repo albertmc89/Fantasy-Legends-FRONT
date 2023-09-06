@@ -1,7 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { auth, gitHubProvider } from "../../firebase";
 import "./HomePage.css";
+import { signInWithPopup } from "firebase/auth";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
+  const login = async () => {
+    await signInWithPopup(auth, gitHubProvider);
+    navigate("/players");
+  };
+
   return (
     <>
       <section className="main-container">
@@ -19,7 +29,7 @@ const HomePage = () => {
             <Button
               className="button black-login"
               text="Log in"
-              actionOnClick={() => {}}
+              actionOnClick={login}
             />
           </div>
         </div>
