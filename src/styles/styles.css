@@ -1,11 +1,15 @@
 :root {
-  --primaryColor: #1d1d1d;
-  --secondaryColor: #004a9f;
-  --buttonLogOutColor: #831c1c;
-  --mainButtonColor: #101010;
+  --primary-color: #1d1d1d;
+  --secondary-color: #004a9f;
+  --terciary-color: #831c1c;
+  --main-button: #101010;
+  --button-login: rgba(51, 51, 51, 0.8);
   --white: #fff;
   --black: #000;
-  --primaryFont: "Mulish", sans-serif;
+  --primary-font: "Mulish", sans-serif;
+  --background-opacity: rgb(0, 0, 0, 0.8);
+  --background-image: url(/public/img/background-login.webp);
+  --background-image-body: url(/public/img/Rectangle1.png);
 }
 
 *,
@@ -15,13 +19,13 @@
 }
 
 html {
-  font-family: var(--primaryFont);
+  font-family: var(--primary-font);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: url(/public/img/Rectangle1.png);
+  background: var(--background-image-body);
   background-size: contain;
 }
 

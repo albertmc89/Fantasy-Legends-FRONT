@@ -1,6 +1,6 @@
 .header {
   padding: 9px 20px;
-  background-color: var(--primaryColor);
+  background-color: var(--primary-color);
   display: flex;
   justify-content: space-between;
   gap: 13px;
