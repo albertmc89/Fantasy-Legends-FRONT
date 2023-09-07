@@ -24,6 +24,8 @@
   width: 100%;
   height: 255px;
   aspect-ratio: 1;
+  object-fit: cover;
+  object-position: top;
 }
 
 .player__data-container {
@@ -45,6 +47,7 @@
   align-items: end;
   gap: 4px;
   font-size: 18px;
+  font-weight: 700;
 }
 
 .button-container {
@@ -64,6 +67,9 @@
 }
 
 .bought {
+  width: 156px;
+  height: 45px;
+  border-radius: 10px;
   background: var(--white);
   text-transform: uppercase;
   color: var(--button-click);
