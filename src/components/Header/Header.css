@@ -5,3 +5,10 @@
   justify-content: space-between;
   gap: 13px;
 }
+
+.button--solid-red {
+  width: 70px;
+  height: 45px;
+  background-color: var(--terciary-color);
+  color: var(--white);
+}
