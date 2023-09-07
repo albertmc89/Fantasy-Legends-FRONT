@@ -59,12 +59,10 @@ p {
   letter-spacing: 3px;
 }
 
-.black-login {
+.button--opacity {
   background-color: var(--button-login);
   color: var(--white);
   width: 120px;
-  height: 45px;
-  border-radius: 5px;
   font-size: 1.125rem;
   font-weight: 700;
 }
