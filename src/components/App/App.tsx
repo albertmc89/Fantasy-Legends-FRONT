@@ -5,6 +5,7 @@ import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import HomePage from "../../pages/HomePage/Homepage";
 import "./App.css";
+import ProtectedRoute from "../../ProtectedRoute/ProtectedRoute";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -16,7 +17,14 @@ const App = (): React.ReactElement => {
         <Routes>
           <Route path="/home" element={<HomePage />} />
           <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/players" element={<PlayersListPage />} />
+          <Route
+            path="/players"
+            element={
+              <ProtectedRoute>
+                <PlayersListPage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </main>
     </div>
