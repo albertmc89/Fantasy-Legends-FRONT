@@ -10,11 +10,7 @@ describe("Given a Button component", () => {
 
       render(
         <BrowserRouter>
-          <Button
-            className=""
-            actionOnClick={mockFunction}
-            text="Log out"
-          ></Button>
+          <Button className="" actionOnClick={mockFunction} text="Log out" />
         </BrowserRouter>,
       );
 
