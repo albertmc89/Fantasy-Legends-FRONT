@@ -4,7 +4,7 @@ import { setupStore } from "../../store";
 import PlayersList from "./PlayersList";
 import { render, screen } from "@testing-library/react";
 
-describe("Given a RobotsList component", () => {
+describe("Given a PlayersList component", () => {
   describe("When it's rendered 'Leo Messi', 'Thierry Henry'", () => {
     test("Then it should show the names 'Leo Messi', 'Thierry Henry' as heading", () => {
       const store = setupStore({ playersState: { players: playersMock } });

@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "../Header/Header";
-import HomePage from "../../pages/HomePage/HomePage";
+import HomePage from "../../pages/HomePage/Homepa";
 import PlayersListPage from "../../pages/PlayersListPage/PlayersListPage";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
