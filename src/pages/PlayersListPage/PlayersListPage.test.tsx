@@ -2,6 +2,7 @@ import { Provider } from "react-redux";
 import { store } from "../../store";
 import PlayersListPage from "./PlayersListPage";
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlayersListPage page", () => {
   describe("When its rendered", () => {
@@ -10,7 +11,9 @@ describe("Given a PlayersListPage page", () => {
 
       render(
         <Provider store={store}>
-          <PlayersListPage />
+          <BrowserRouter>
+            <PlayersListPage />
+          </BrowserRouter>
         </Provider>,
       );
 
