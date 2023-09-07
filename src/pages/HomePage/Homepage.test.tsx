@@ -1,6 +1,6 @@
-import HomePage from "./Homepa";
 import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
+import HomePage from "./Homepage";
 
 describe("Given a HomePage page", () => {
   describe("When it's rendered", () => {

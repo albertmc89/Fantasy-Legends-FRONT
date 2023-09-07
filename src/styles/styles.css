@@ -10,7 +10,7 @@
   --primary-font: "Mulish", sans-serif;
   --background-opacity: rgb(0, 0, 0, 0.8);
   --background-image: url(/public/img/background-login.webp);
-  --background-image-body: url(/public/img/Rectangle1.png);
+  --background-image-body: url(/public/img/Rectangle1.webp);
 }
 
 *,
