@@ -25,7 +25,7 @@ const Header = (): React.ReactElement => {
       </div>
       <Navigation />
       <Button
-        className="button red-button"
+        className="button button--solid-red"
         text="Log out"
         actionOnClick={logout}
       />

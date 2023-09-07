@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store";
+import PlayerCard from "../PlayerCard/PlayerCard";
 import "./PlayersList.css";
 
 const PlayersList = (): React.ReactElement => {
@@ -8,7 +9,7 @@ const PlayersList = (): React.ReactElement => {
     <ul className="players-list">
       {players.map((player) => (
         <li key={player.id}>
-          <h2>{player.name}</h2>
+          <PlayerCard player={player} />
         </li>
       ))}
     </ul>
