@@ -10,7 +10,8 @@ const Header = (): React.ReactElement => {
 
   const logout = async () => {
     await signOut(auth);
-    navigate("/");
+
+    navigate("/home");
   };
 
   return (
