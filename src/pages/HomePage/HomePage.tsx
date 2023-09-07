@@ -20,7 +20,7 @@ const HomePage = () => {
             <img
               className="login-container__image"
               src="./img/logo-avatar.png"
-              alt="imagen avatar traje"
+              alt="grey suit avatar logo"
             />
           </div>
           <div className="login-container__title-container">

@@ -1,5 +1,5 @@
 export interface ApiPlayer {
-  id: string;
+  _id: string;
   name: string;
   country: string;
   age: number;
@@ -9,12 +9,8 @@ export interface ApiPlayer {
   position: string;
   image: string;
   isBought: boolean;
-  user: string;
 }
 
-export interface ApiPlayer {
-  players: ApiPlayer[];
-}
 export interface Player extends Omit<ApiPlayer, "_id"> {
   id: string;
 }
