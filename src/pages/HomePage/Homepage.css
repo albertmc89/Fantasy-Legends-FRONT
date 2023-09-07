@@ -52,7 +52,7 @@
   font-weight: 700;
 }
 
-p {
+.login-container__subtitle {
   padding: 0 20px;
   margin: 0;
   text-align: center;
