@@ -76,3 +76,14 @@
   font-weight: 700;
   border: 1px solid var(--black);
 }
+
+.sold {
+  width: 156px;
+  height: 45px;
+  border-radius: 10px;
+  background: var(--white);
+  text-transform: uppercase;
+  color: var(--terciary-color);
+  font-weight: 700;
+  border: 1px solid var(--black);
+}

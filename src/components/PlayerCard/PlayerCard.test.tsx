@@ -3,6 +3,7 @@ import { playersMock } from "../../mocks/playersMock";
 import PlayerCard from "./PlayerCard";
 import { store } from "../../store";
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlayerCard component", () => {
   describe("When it's rendered", () => {
@@ -32,6 +33,36 @@ describe("Given a PlayerCard component", () => {
       const heading = screen.getByRole("heading", { name: headingText });
 
       expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When it is rendered", () => {
+    test("It should show a button with the text 'bought' inside", () => {
+      const buttonText = "bought";
+
+      render(
+        <BrowserRouter>
+          <PlayerCard player={playersMock[0]} />
+        </BrowserRouter>,
+      );
+
+      const button = screen.getByRole("button", { name: buttonText });
+
+      expect(button).toBeInTheDocument();
+    });
+
+    test("It should show a button with the text 'sold' inside", () => {
+      const buttonText = "sold";
+
+      render(
+        <BrowserRouter>
+          <PlayerCard player={playersMock[1]} />
+        </BrowserRouter>,
+      );
+
+      const button = screen.getByRole("button", { name: buttonText });
+
+      expect(button).toBeInTheDocument();
     });
   });
 });

@@ -25,6 +25,6 @@ export const playersMock: Player[] = [
     position: "ST",
     image:
       "https://tmssl.akamaized.net/images/foto/galerie/thierry-henry-1417524348-3352.jpg?lm=1483605830",
-    isBought: true,
+    isBought: false,
   },
 ];
