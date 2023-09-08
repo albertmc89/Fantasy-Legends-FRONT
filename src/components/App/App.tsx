@@ -4,7 +4,6 @@ import PlayersListPage from "../../pages/PlayersListPage/PlayersListPage";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import HomePage from "../../pages/HomePage/Homepage";
-import "./App.css";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import paths from "../../paths/paths";
 
@@ -14,7 +13,7 @@ const App = (): React.ReactElement => {
   return (
     <>
       {user && <Header />}
-      <div className="container">
+      <main className="main-container">
         <Routes>
           <Route path={paths.homepage} element={<HomePage />} />
           <Route
@@ -27,7 +26,7 @@ const App = (): React.ReactElement => {
           />
           <Route path={paths.root} element={<Navigate to={paths.homepage} />} />
         </Routes>
-      </div>
+      </main>
     </>
   );
 };

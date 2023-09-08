@@ -23,7 +23,6 @@
 .player__picture {
   width: 100%;
   height: 255px;
-  aspect-ratio: 1;
   object-fit: cover;
   object-position: top;
 }
