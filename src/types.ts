@@ -14,3 +14,9 @@ export interface ApiPlayer {
 export interface Player extends Omit<ApiPlayer, "_id"> {
   id: string;
 }
+
+export interface paths {
+  root: string;
+  homepage: string;
+  players: string;
+}
