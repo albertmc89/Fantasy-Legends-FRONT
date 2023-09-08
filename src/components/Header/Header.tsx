@@ -4,6 +4,7 @@ import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
+import paths from "../../paths/paths";
 
 const Header = (): React.ReactElement => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Header = (): React.ReactElement => {
   const logout = async () => {
     await signOut(auth);
 
-    navigate("/home");
+    navigate(paths.homepage);
   };
 
   return (

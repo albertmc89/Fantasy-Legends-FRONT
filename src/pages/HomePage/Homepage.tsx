@@ -3,6 +3,7 @@ import Button from "../../components/Button/Button";
 import { auth, gitHubProvider } from "../../firebase";
 import "./Homepage.css";
 import { signInWithPopup } from "firebase/auth";
+import paths from "../../paths/paths";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const HomePage = () => {
   const login = async () => {
     await signInWithPopup(auth, gitHubProvider);
 
-    navigate("/players");
+    navigate(paths.players);
   };
 
   return (
