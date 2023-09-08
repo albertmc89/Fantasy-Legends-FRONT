@@ -15,8 +15,8 @@ const HomePage = () => {
   };
 
   return (
-    <div className="main-container">
-      <div className="login-container">
+    <div className="container">
+      <article className="login-container">
         <div className="login-container__avatar">
           <img
             className="login-container__image"
@@ -35,7 +35,7 @@ const HomePage = () => {
             actionOnClick={login}
           />
         </div>
-      </div>
+      </article>
     </div>
   );
 };
