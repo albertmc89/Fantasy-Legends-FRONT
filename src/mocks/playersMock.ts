@@ -11,7 +11,7 @@ export const playersMock: Player[] = [
     games: 1038,
     position: "ST",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg",
+      "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp",
     isBought: true,
   },
   {
@@ -24,7 +24,7 @@ export const playersMock: Player[] = [
     games: 922,
     position: "ST",
     image:
-      "https://tmssl.akamaized.net/images/foto/galerie/thierry-henry-1417524348-3352.jpg?lm=1483605830",
+      "https://cdn.discordapp.com/attachments/1149732795334266962/1149733956523147324/thierry-henry.webp",
     isBought: false,
   },
 ];
