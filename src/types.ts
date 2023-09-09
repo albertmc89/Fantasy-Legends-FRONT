@@ -11,6 +11,10 @@ export interface ApiPlayer {
   isBought: boolean;
 }
 
+export interface ApiPlayers {
+  players: ApiPlayer[];
+}
+
 export interface Player extends Omit<ApiPlayer, "_id"> {
   id: string;
 }
