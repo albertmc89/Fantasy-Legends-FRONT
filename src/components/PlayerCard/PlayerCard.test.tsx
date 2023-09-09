@@ -7,8 +7,9 @@ import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlayerCard component", () => {
   describe("When it's rendered", () => {
-    test("Then it should show an image with the alternate text 'Close-up of Leo Messi'", () => {
-      const alternateImageText = "Close-up of Leo Messi";
+    test("Then it should show an image with the alternate text 'Moment of a fooball game in which Leo Messi plays with his team'", () => {
+      const alternateImageText =
+        "Moment of a fooball game in which Leo Messi plays with his team";
 
       render(
         <Provider store={store}>

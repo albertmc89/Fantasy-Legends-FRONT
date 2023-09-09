@@ -11,14 +11,11 @@ const PlayerCard = ({
 }: PlayerCardProps): React.ReactElement => {
   return (
     <article className="player">
-      <div className="player__container">
-        <img
-          className="player__picture"
-          src={`${image}`}
-          alt={`Close-up of ${name}`}
-          loading="lazy"
-        />
-      </div>
+      <img
+        className="player__picture"
+        src={image}
+        alt={`Moment of a fooball game in which ${name} plays with his team`}
+      />
       <div className="player__content">
         <div className="player__data-container">
           <h2 className="player__name">{name}</h2>

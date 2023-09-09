@@ -12,11 +12,7 @@ const Button = ({
   text,
 }: ButtonProps): React.ReactElement => {
   return (
-    <button
-      type="button"
-      className={`"button" ${className}`}
-      onClick={actionOnClick}
-    >
+    <button type="button" className={`${className}`} onClick={actionOnClick}>
       {text}
     </button>
   );
