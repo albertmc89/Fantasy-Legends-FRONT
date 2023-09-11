@@ -5,7 +5,7 @@ export const handlers = [
   rest.get(
     `${import.meta.env.VITE_API_PLAYERS_URL}players`,
     (_req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(apiMockPlayers));
+      return res(ctx.status(200), ctx.json({ players: apiMockPlayers }));
     },
   ),
 ];
