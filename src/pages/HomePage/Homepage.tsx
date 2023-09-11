@@ -1,12 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { auth, gitHubProvider } from "../../firebase";
 import "./Homepage.css";
 import { signInWithPopup } from "firebase/auth";
 import paths from "../../paths/paths";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+
+  if (user) {
+    return <Navigate to={paths.players} />;
+  }
 
   const login = async () => {
     await signInWithPopup(auth, gitHubProvider);
