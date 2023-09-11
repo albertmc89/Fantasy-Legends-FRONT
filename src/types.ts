@@ -21,5 +21,5 @@ export interface Player extends Omit<ApiPlayer, "_id"> {
 }
 
 export interface PlayersMockApi {
-  players: Player[];
+  playersMock: Player[];
 }
