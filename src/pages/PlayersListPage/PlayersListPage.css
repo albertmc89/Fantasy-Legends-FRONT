@@ -14,4 +14,5 @@
   min-height: 100vh;
   background-image: var(--background-image-body);
   background-size: cover;
+  padding-bottom: 20px;
 }

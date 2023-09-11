@@ -17,6 +17,7 @@ jobs:
       - name: 🧪 Testing
         run: npm test
     env:
+      VITE_API_PLAYERS_URL: ${{ secrets.VITE_API_PLAYERS_URL }}
       VITE_FIREBASE_API_KEY: ${{ secrets.VITE_FIREBASE_API_KEY }}
       VITE_FIREBASE_API_AUTHDOMAIN: ${{ secrets.VITE_FIREBASE_API_AUTHDOMAIN }}
       VITE_FIREBASE_API_PROJECTID: ${{ secrets.VITE_VITE_FIREBASE_API_PROJECTIDAPI_URL }}

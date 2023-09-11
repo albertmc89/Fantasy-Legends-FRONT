@@ -13,6 +13,7 @@ export const playersMock: Player[] = [
     image:
       "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp",
     isBought: true,
+    user: "userId",
   },
   {
     id: "2",
@@ -26,6 +27,7 @@ export const playersMock: Player[] = [
     image:
       "https://cdn.discordapp.com/attachments/1149732795334266962/1149733956523147324/thierry-henry.webp",
     isBought: false,
+    user: "userId",
   },
 ];
 
@@ -43,6 +45,7 @@ export const apiMockPlayers: ApiPlayers = {
       image:
         "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp",
       isBought: true,
+      user: "userId",
     },
     {
       _id: "2",
@@ -56,6 +59,7 @@ export const apiMockPlayers: ApiPlayers = {
       image:
         "https://cdn.discordapp.com/attachments/1149732795334266962/1149733956523147324/thierry-henry.webp",
       isBought: false,
+      user: "userId",
     },
   ],
 };

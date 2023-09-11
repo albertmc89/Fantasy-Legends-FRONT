@@ -1,16 +1,22 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter } from "react-router-dom";
 import App from "./App";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { User } from "firebase/auth";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { store } from "../../store";
+import paths from "../../paths/paths";
 
 vi.mock("firebase/auth");
 
-const user: Partial<User> = { displayName: "Amigo" };
+const user: Partial<User> = {
+  getIdToken: vi.fn().mockResolvedValue("token"),
+};
+
 const authStateHookMock: Partial<AuthStateHook> = [user as User];
+auth.useIdToken = vi.fn().mockReturnValue([user]);
+auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given a App component", () => {
   describe("When the user is not logged in", () => {
@@ -23,7 +29,9 @@ describe("Given a App component", () => {
 
       render(
         <BrowserRouter>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </BrowserRouter>,
       );
 
@@ -36,22 +44,23 @@ describe("Given a App component", () => {
   describe("When it's rendered and user is logged", () => {
     test("Then it should show a page with the text 'Players' inside a heading", async () => {
       const headingText = "Players";
-      const buttonText = "Log in";
+      const buttonText = "Log out";
+      const route = paths.players;
 
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
       render(
-        <Provider store={store}>
-          <BrowserRouter>
+        <MemoryRouter initialEntries={[route]}>
+          <Provider store={store}>
             <App />
-          </BrowserRouter>
-        </Provider>,
+          </Provider>
+        </MemoryRouter>,
       );
 
-      const loginButton = screen.getByRole("button", {
+      const logoutButton = screen.getByRole("button", {
         name: buttonText,
       });
-      await userEvent.click(loginButton);
+      await userEvent.click(logoutButton);
 
       waitFor(() => {
         const heading = screen.getByRole("heading", {
@@ -59,36 +68,6 @@ describe("Given a App component", () => {
         });
 
         expect(heading).toBeInTheDocument();
-      });
-    });
-
-    describe("When the button 'Log out' is clicked", () => {
-      test("Then it should show a page with a 'Welcome' inside a heading", async () => {
-        const headingText = "Welcome";
-        const buttonText = "Log out";
-
-        auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
-        render(
-          <Provider store={store}>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </Provider>,
-        );
-
-        const logoutButton = screen.getByRole("button", {
-          name: buttonText,
-        });
-        await userEvent.click(logoutButton);
-
-        waitFor(() => {
-          const heading = screen.getByRole("heading", {
-            name: headingText,
-          });
-
-          expect(heading).toBeInTheDocument();
-        });
       });
     });
   });

@@ -9,6 +9,7 @@ export interface ApiPlayer {
   position: string;
   image: string;
   isBought: boolean;
+  user: string;
 }
 
 export interface ApiPlayers {
@@ -17,4 +18,8 @@ export interface ApiPlayers {
 
 export interface Player extends Omit<ApiPlayer, "_id"> {
   id: string;
+}
+
+export interface PlayersMockApi {
+  players: Player[];
 }
