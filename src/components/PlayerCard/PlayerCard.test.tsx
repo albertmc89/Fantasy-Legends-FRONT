@@ -1,9 +1,9 @@
 import { Provider } from "react-redux";
+import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import { playersMock } from "../../mocks/playersMock";
 import PlayerCard from "./PlayerCard";
 import { store } from "../../store";
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlayerCard component", () => {
   describe("When it's rendered", () => {

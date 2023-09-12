@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
-import Button from "./Button";
 import { render, screen } from "@testing-library/react";
+import Button from "./Button";
 
 describe("Given a Button component", () => {
   describe("When it is rendered", () => {

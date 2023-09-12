@@ -4,7 +4,7 @@ import {
   configureStore,
 } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { playersReducer } from "./player/playersSlice";
+import { playersReducer } from "./players/playersSlice";
 import { uiReducer } from "./ui/uiSlice";
 
 const rootReducer = combineReducers({
