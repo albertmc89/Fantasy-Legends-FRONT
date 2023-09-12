@@ -30,28 +30,18 @@
 }
 
 @keyframes roll {
-  0% {
-  }
   100% {
     transform: rotate(360deg);
   }
 }
 @keyframes bounce {
-  0% {
-  }
   50% {
     transform: translateY(100px);
   }
-  100% {
-  }
 }
 @keyframes shadowScale {
-  0% {
-  }
   50% {
     transform: scaleX(1);
     opacity: 0.8;
-  }
-  100% {
   }
 }
