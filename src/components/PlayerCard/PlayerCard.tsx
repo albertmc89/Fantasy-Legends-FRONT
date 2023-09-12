@@ -4,10 +4,12 @@ import "./PlayerCard.css";
 
 interface PlayerCardProps {
   player: Partial<Player>;
+  playerPosition: number;
 }
 
 const PlayerCard = ({
   player: { name, age, country, image, isBought },
+  playerPosition,
 }: PlayerCardProps): React.ReactElement => {
   return (
     <article className="player">
@@ -15,6 +17,7 @@ const PlayerCard = ({
         className="player__picture"
         src={image}
         alt={`Moment of a fooball game in which ${name} plays with his team`}
+        loading={playerPosition > 2 ? "lazy" : "eager"}
       />
       <div className="player__content">
         <div className="player__data-container">
