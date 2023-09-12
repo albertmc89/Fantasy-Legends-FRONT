@@ -10,9 +10,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 11px;
 }
 
 .navigation-link.active {
   border-bottom: 1px solid var(--white);
+}
+
+.navigation__add {
+  width: max-content;
 }

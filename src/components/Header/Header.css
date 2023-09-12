@@ -3,11 +3,12 @@
   background-color: var(--primary-color);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 13px;
 }
 
 .button--solid-red {
-  width: 70px;
+  width: 75px;
   height: 45px;
   background-color: var(--terciary-color);
   color: var(--white);
