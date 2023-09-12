@@ -19,7 +19,7 @@ const Header = (): React.ReactElement => {
     <header className="header">
       <div className="title-container">
         <img
-          src="./img/logo.png"
+          src="./img/logo.webp"
           alt="logo ball with blue and yellor colors"
           width={45}
           height={45}
