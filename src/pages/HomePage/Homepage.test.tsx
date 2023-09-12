@@ -1,6 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import HomePage from "./Homepage";
+import { Suspense } from "react";
 
 describe("Given a HomePage page", () => {
   describe("When it's rendered", () => {
@@ -9,7 +10,9 @@ describe("Given a HomePage page", () => {
 
       render(
         <BrowserRouter>
-          <HomePage />
+          <Suspense>
+            <HomePage />
+          </Suspense>
         </BrowserRouter>,
       );
 
@@ -23,7 +26,9 @@ describe("Given a HomePage page", () => {
 
       render(
         <BrowserRouter>
-          <HomePage />
+          <Suspense>
+            <HomePage />
+          </Suspense>
         </BrowserRouter>,
       );
 
