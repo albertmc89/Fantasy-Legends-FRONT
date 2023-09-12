@@ -5,6 +5,9 @@ import { server } from "../mocks/server";
 import { errorHandlers } from "../mocks/handlers";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { User } from "firebase/auth";
+import { Provider } from "react-redux";
+import { setupStore } from "../store";
+import { PropsWithChildren } from "react";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -18,10 +21,16 @@ const authStateHookMock: Partial<AuthStateHook> = [user as User];
 auth.useIdToken = vi.fn().mockReturnValue([user]);
 auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
+const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
+  const store = setupStore({ uiState: { isLoading: false } });
+
+  return <Provider store={store}>{children}</Provider>;
+};
+
 describe("Given function getPlayer from usePlayersApi custom hook", () => {
   describe("When the function is called", () => {
     test("Then you will recieve a list of players", async () => {
-      const { result } = renderHook(() => usePlayersApi());
+      const { result } = renderHook(() => usePlayersApi(), { wrapper });
       const { getPlayers } = result.current;
 
       const players = await getPlayers();
@@ -35,7 +44,7 @@ describe("Given function getPlayer from usePlayersApi custom hook", () => {
       server.resetHandlers(...errorHandlers);
 
       const expectedError = new Error("Can't get any player");
-      const { result } = renderHook(() => usePlayersApi());
+      const { result } = renderHook(() => usePlayersApi(), { wrapper });
       const { getPlayers } = result.current;
 
       const error = getPlayers();

@@ -1,16 +1,18 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "../../store";
-import { loadPlayersActionCreator } from "../../store/Players/playersSlice";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { loadPlayersActionCreator } from "../../store/player/playersSlice";
 import "./PlayersListPage.css";
 import PlayersList from "../../components/PlayersList/PlayersList";
 import usePlayersApi from "../../hooks/usePlayersApi";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "../../components/Loading/Loading";
 
 const PlayersListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { getPlayers } = usePlayersApi();
   const [user] = useAuthState(auth);
+  const isLoading = useAppSelector((state) => state.uiState.isLoading);
 
   useEffect(() => {
     (async () => {
@@ -26,7 +28,7 @@ const PlayersListPage = (): React.ReactElement => {
     <>
       <div className="players-page">
         <h2 className="players-title">Players</h2>
-        <PlayersList />
+        {isLoading ? <Loading /> : <PlayersList />}
       </div>
     </>
   );
