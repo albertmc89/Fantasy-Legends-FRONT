@@ -1,18 +1,12 @@
-import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
+import { signOut } from "firebase/auth";
 import Button from "../Button/Button";
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
-import { auth } from "../../firebase";
-import { signOut } from "firebase/auth";
-import paths from "../../paths/paths";
 
 const Header = (): React.ReactElement => {
-  const navigate = useNavigate();
-
   const logout = async () => {
     await signOut(auth);
-
-    navigate(paths.homepage);
   };
 
   return (

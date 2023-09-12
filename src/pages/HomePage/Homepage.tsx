@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { auth, gitHubProvider } from "../../firebase";
 import { signInWithPopup } from "firebase/auth";
 import paths from "../../paths/paths";
@@ -10,7 +10,6 @@ import Button from "../../components/Button/Button";
 export const HomepagePreview = lazy(() => import("./Homepage"));
 
 const Homepage = () => {
-  const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
   if (user) {
@@ -19,8 +18,6 @@ const Homepage = () => {
 
   const login = async () => {
     await signInWithPopup(auth, gitHubProvider);
-
-    navigate(paths.players);
   };
 
   return (

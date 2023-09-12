@@ -1,5 +1,4 @@
 import Button from "../../components/Button/Button";
-import paths from "../../paths/paths";
 import "./ErrorPage.css";
 
 const Errorpage = () => {
@@ -13,9 +12,7 @@ const Errorpage = () => {
         <Button
           text="Back to home"
           className="button--solid"
-          actionOnClick={() => {
-            paths.players;
-          }}
+          actionOnClick={() => {}}
         />
       </div>
     </>

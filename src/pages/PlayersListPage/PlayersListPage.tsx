@@ -19,17 +19,17 @@ const PlayersListPage = (): React.ReactElement => {
   const isLoading = useAppSelector((state) => state.uiState.isLoading);
   const players = useAppSelector((state) => state.playersState.players);
 
+  const hasPlayers = players.length > 0;
+
   useEffect(() => {
-    (async () => {
-      if (user) {
+    if (user) {
+      (async () => {
         const players = await getPlayers();
 
-        dispatch(loadPlayersActionCreator(players));
-      }
-    })();
+        dispatch(loadPlayersActionCreator(players!));
+      })();
+    }
   }, [dispatch, getPlayers, user]);
-
-  const hasPlayers = players.length > 0;
 
   return (
     <>
@@ -51,7 +51,6 @@ const PlayersListPage = (): React.ReactElement => {
               text="Add"
               actionOnClick={() => {}}
             />
-            <Loading />
           </div>
         </>
       )}
