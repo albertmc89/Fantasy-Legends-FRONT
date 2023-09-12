@@ -8,6 +8,7 @@ import {
   startLoadingActionCreator,
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
+import { showFeedBack } from "../components/FeedBack/showFeedBack";
 
 const usePlayersApi = () => {
   const [user] = useIdToken(auth);
@@ -37,10 +38,12 @@ const usePlayersApi = () => {
       );
       dispatch(stopLoadingActionCreator());
 
+      showFeedBack("Players succesfully loaded", true);
       return players;
     } catch {
       dispatch(stopLoadingActionCreator());
 
+      showFeedBack("Error players not loaded", false);
       throw new Error("Can't get any player");
     }
   }, [apiUrl, user, dispatch]);

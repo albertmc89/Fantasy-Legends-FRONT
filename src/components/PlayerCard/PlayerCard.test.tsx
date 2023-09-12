@@ -6,6 +6,9 @@ import PlayerCard from "./PlayerCard";
 import { store } from "../../store";
 
 describe("Given a PlayerCard component", () => {
+  const playerPosition = 0;
+  const playerBPosition = 1;
+
   describe("When it's rendered", () => {
     test("Then it should show an image with the alternate text 'Moment of a fooball game in which Leo Messi plays with his team'", () => {
       const alternateImageText =
@@ -13,7 +16,10 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlayerCard player={playersMock[0]} playerPosition={0} />
+          <PlayerCard
+            player={playersMock[playerPosition]}
+            playerPosition={playerPosition}
+          />
         </Provider>,
       );
 
@@ -27,7 +33,10 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlayerCard player={playersMock[0]} playerPosition={0} />
+          <PlayerCard
+            player={playersMock[playerPosition]}
+            playerPosition={playerPosition}
+          />
         </Provider>,
       );
 
@@ -43,7 +52,10 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <BrowserRouter>
-          <PlayerCard player={playersMock[0]} playerPosition={0} />
+          <PlayerCard
+            player={playersMock[playerPosition]}
+            playerPosition={playerPosition}
+          />
         </BrowserRouter>,
       );
 
@@ -57,7 +69,10 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <BrowserRouter>
-          <PlayerCard player={playersMock[1]} playerPosition={1} />
+          <PlayerCard
+            player={playersMock[playerBPosition]}
+            playerPosition={playerBPosition}
+          />
         </BrowserRouter>,
       );
 
