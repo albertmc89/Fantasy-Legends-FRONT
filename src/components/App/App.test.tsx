@@ -31,7 +31,7 @@ auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given a App component", () => {
   describe("When the user is not logged in", () => {
-    test("Then it should show 'Welcome' inside a heading", () => {
+    test("Then it should show 'Welcome' inside a heading", async () => {
       const headingText = "Welcome";
 
       const authStateHookMock: Partial<AuthStateHook> = [undefined];
@@ -46,7 +46,7 @@ describe("Given a App component", () => {
         </BrowserRouter>,
       );
 
-      const heading = screen.getByRole("heading", { name: headingText });
+      const heading = await screen.findByRole("heading", { name: headingText });
 
       expect(heading).toBeInTheDocument();
     });
@@ -58,6 +58,7 @@ describe("Given a App component", () => {
       const buttonText = "Log out";
       const route = paths.players;
 
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
       render(
@@ -85,17 +86,17 @@ describe("Given a App component", () => {
     describe("When the user clicks on the login button", () => {
       test("Then the login function should be called", async () => {
         const buttonText = "Log in";
-        const homeRoute = "/home";
+        const homeRoute = paths.homepage;
 
         const authStateHookMock: Partial<AuthStateHook> = [null as null];
         auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
         render(
-          <MemoryRouter initialEntries={[homeRoute]}>
-            <Provider store={store}>
+          <Provider store={store}>
+            <MemoryRouter initialEntries={[homeRoute]}>
               <App />
-            </Provider>
-          </MemoryRouter>,
+            </MemoryRouter>
+          </Provider>,
         );
 
         const loginButton = screen.getByRole("button", { name: buttonText });
@@ -108,13 +109,13 @@ describe("Given a App component", () => {
     describe("When the user clicks on the logout button", () => {
       test("Then it should show 'Welcome' inside a heading", async () => {
         const buttonText = "Log out";
-        const destinationsRoute = "/players";
+        const playersRoute = "/players";
 
         const authStateHookMock: Partial<AuthStateHook> = [user as User];
         auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
         render(
-          <MemoryRouter initialEntries={[destinationsRoute]}>
+          <MemoryRouter initialEntries={[playersRoute]}>
             <Provider store={store}>
               <App />
             </Provider>

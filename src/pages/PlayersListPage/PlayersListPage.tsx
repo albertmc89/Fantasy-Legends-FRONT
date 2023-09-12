@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadPlayersActionCreator } from "../../store/players/playersSlice";
-import "./PlayersListPage.css";
 import PlayersList from "../../components/PlayersList/PlayersList";
 import usePlayersApi from "../../hooks/usePlayersApi";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../../components/Loading/Loading";
+import "./PlayersListPage.css";
+
+export const PlayersListPagePreview = lazy(() => import("./PlayersListPage"));
 
 const PlayersListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();

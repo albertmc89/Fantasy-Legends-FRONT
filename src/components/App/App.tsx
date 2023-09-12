@@ -1,11 +1,12 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Header from "../Header/Header";
-import PlayersListPage from "../../pages/PlayersListPage/PlayersListPage";
+import { PlayersListPagePreview } from "../../pages/PlayersListPage/PlayersListPage";
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import HomePage from "../../pages/HomePage/Homepage";
+import { HomepagePreview } from "../../pages/HomePage/Homepage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import paths from "../../paths/paths";
+import { Suspense } from "react";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -15,12 +16,21 @@ const App = (): React.ReactElement => {
       {user && <Header />}
       <main className="main-container">
         <Routes>
-          <Route path={paths.homepage} element={<HomePage />} />
+          <Route
+            path={paths.homepage}
+            element={
+              <Suspense>
+                <HomepagePreview />
+              </Suspense>
+            }
+          />
           <Route
             path={paths.players}
             element={
               <ProtectedRoute>
-                <PlayersListPage />
+                <Suspense>
+                  <PlayersListPagePreview />
+                </Suspense>
               </ProtectedRoute>
             }
           />
