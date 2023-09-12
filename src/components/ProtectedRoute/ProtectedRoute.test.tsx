@@ -1,9 +1,6 @@
-import { store } from "../../store";
 import { render, screen } from "@testing-library/react";
 import { User } from "firebase/auth";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 
 describe("Given a ProtectedRoute component", () => {
@@ -19,15 +16,9 @@ describe("Given a ProtectedRoute component", () => {
       const headingText = "Players";
 
       render(
-        <BrowserRouter>
-          <Provider store={store}>
-            <ProtectedRoute>
-              <div>
-                <h1>Players</h1>
-              </div>
-            </ProtectedRoute>
-          </Provider>
-        </BrowserRouter>,
+        <ProtectedRoute>
+          <h1>Players</h1>
+        </ProtectedRoute>,
       );
 
       const heading = screen.getByRole("heading", { name: headingText });

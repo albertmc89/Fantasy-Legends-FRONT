@@ -1,11 +1,11 @@
 import { BrowserRouter } from "react-router-dom";
-import Navigation from "./Navigation";
 import { render, screen } from "@testing-library/react";
+import Navigation from "./Navigation";
 
 describe("Given a Navigation component", () => {
   describe("When it's rendered", () => {
-    test("Then it should show the links 'Home' and 'Add player'", () => {
-      const navHome = "Home";
+    test("Then it should show the links 'Players' and 'Add player'", () => {
+      const navHome = "Players";
       const navCreate = "Add player";
 
       render(

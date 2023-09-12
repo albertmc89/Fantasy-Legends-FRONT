@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store";
-import { loadPlayersActionCreator } from "../../store/player/playersSlice";
+import { loadPlayersActionCreator } from "../../store/players/playersSlice";
 import "./PlayersListPage.css";
 import PlayersList from "../../components/PlayersList/PlayersList";
 import usePlayersApi from "../../hooks/usePlayersApi";

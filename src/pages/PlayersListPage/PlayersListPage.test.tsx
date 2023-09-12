@@ -1,8 +1,8 @@
 import { Provider } from "react-redux";
-import { store } from "../../store";
-import PlayersListPage from "./PlayersListPage";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
+import { store } from "../../store";
+import PlayersListPage from "./PlayersListPage";
 
 describe("Given a PlayersListPage page", () => {
   describe("When its rendered", () => {

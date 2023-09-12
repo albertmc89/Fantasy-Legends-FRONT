@@ -1,12 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import App from "./App";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { Auth, User, signInWithPopup, signOut } from "firebase/auth";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
 import { store } from "../../store";
 import paths from "../../paths/paths";
+import App from "./App";
 
 beforeEach(() => {
   vi.clearAllMocks();

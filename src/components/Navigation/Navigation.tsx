@@ -8,7 +8,7 @@ const Navigation = (): React.ReactElement => {
         <ul className="navigation__list">
           <li>
             <NavLink className="navigation-link" to="/players">
-              Home
+              Players
             </NavLink>
           </li>
           <li>
