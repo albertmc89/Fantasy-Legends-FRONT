@@ -13,7 +13,7 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlayerCard player={playersMock[0]} />
+          <PlayerCard player={playersMock[0]} playerPosition={0} />
         </Provider>,
       );
 
@@ -27,7 +27,7 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <Provider store={store}>
-          <PlayerCard player={playersMock[0]} />
+          <PlayerCard player={playersMock[0]} playerPosition={0} />
         </Provider>,
       );
 
@@ -43,7 +43,7 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <BrowserRouter>
-          <PlayerCard player={playersMock[0]} />
+          <PlayerCard player={playersMock[0]} playerPosition={0} />
         </BrowserRouter>,
       );
 
@@ -57,7 +57,7 @@ describe("Given a PlayerCard component", () => {
 
       render(
         <BrowserRouter>
-          <PlayerCard player={playersMock[1]} />
+          <PlayerCard player={playersMock[1]} playerPosition={1} />
         </BrowserRouter>,
       );
 

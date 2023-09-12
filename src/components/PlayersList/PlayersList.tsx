@@ -7,9 +7,9 @@ const PlayersList = (): React.ReactElement => {
 
   return (
     <ul className="players-list">
-      {players.map((player) => (
+      {players.map((player, playerPosition) => (
         <li key={player.id}>
-          <PlayerCard player={player} />
+          <PlayerCard player={player} playerPosition={playerPosition} />
         </li>
       ))}
     </ul>

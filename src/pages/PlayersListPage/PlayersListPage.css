@@ -16,3 +16,21 @@
   background-size: cover;
   padding-bottom: 20px;
 }
+
+.empty-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  text-align: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.empty-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
