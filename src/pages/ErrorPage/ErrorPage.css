@@ -1,0 +1,25 @@
+.error {
+  display: flex;
+  flex-direction: column;
+}
+
+.error__number {
+  font-size: 6rem;
+  font-weight: 700;
+}
+
+.error__title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--minor-color);
+  bottom: 10px;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+}
