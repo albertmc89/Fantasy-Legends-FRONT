@@ -39,8 +39,8 @@ const Homepage = () => {
             Access with your Github account
           </span>
           <Button
-            className="button button--solid"
-            text="Log in"
+            className="button--opacity"
+            text="Login"
             actionOnClick={login}
           />
         </div>

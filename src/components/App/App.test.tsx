@@ -85,7 +85,7 @@ describe("Given a App component", () => {
 
     describe("When the user clicks on the login button", () => {
       test("Then the login function should be called", async () => {
-        const buttonText = "Log in";
+        const buttonText = "Login";
         const homeRoute = paths.homepage;
 
         const authStateHookMock: Partial<AuthStateHook> = [null as null];

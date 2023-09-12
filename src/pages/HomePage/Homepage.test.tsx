@@ -21,8 +21,8 @@ describe("Given a HomePage page", () => {
       expect(heading).toBeInTheDocument();
     });
 
-    test("Then it should show a button 'Log in'", () => {
-      const expectedText = "Log in";
+    test("Then it should show a button 'Login'", () => {
+      const expectedText = "Login";
 
       render(
         <BrowserRouter>
