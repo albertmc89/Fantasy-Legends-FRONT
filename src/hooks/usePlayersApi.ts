@@ -3,13 +3,20 @@ import axios from "axios";
 import { ApiPlayers, Player } from "../types";
 import { useIdToken } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
+import { useDispatch } from "react-redux";
+import {
+  startLoadingActionCreator,
+  stopLoadingActionCreator,
+} from "../store/ui/uiSlice";
 
 const usePlayersApi = () => {
   const [user] = useIdToken(auth);
+  const dispatch = useDispatch();
 
   const apiUrl = import.meta.env.VITE_API_PLAYERS_URL;
 
   const getPlayers = useCallback(async (): Promise<Player[]> => {
+    dispatch(startLoadingActionCreator());
     try {
       const token = await user?.getIdToken();
 
@@ -23,38 +30,20 @@ const usePlayersApi = () => {
       const apiPlayersList = apiPlayers.players;
 
       const players = apiPlayersList.map<Player>(
-        ({
-          _id,
-          name,
-          image,
-          position,
-          games,
-          age,
-          country,
-          goals,
-          height,
-          isBought,
-          user,
-        }) => ({
+        ({ _id, ...apiPlayersList }) => ({
           id: _id,
-          name,
-          image,
-          age,
-          country,
-          position,
-          games,
-          height,
-          goals,
-          isBought,
-          user,
+          ...apiPlayersList,
         }),
       );
+      dispatch(stopLoadingActionCreator());
 
       return players;
     } catch {
+      dispatch(stopLoadingActionCreator());
+
       throw new Error("Can't get any player");
     }
-  }, [apiUrl, user]);
+  }, [apiUrl, user, dispatch]);
 
   return { getPlayers };
 };
