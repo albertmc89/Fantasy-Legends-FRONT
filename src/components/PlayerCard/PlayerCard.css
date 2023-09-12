@@ -11,8 +11,8 @@
 .player__content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 0 20px;
+  gap: 30px;
+  padding: 20px 18px;
 }
 
 .player__picture {

@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../../components/Loading/Loading";
 import "./PlayersListPage.css";
 import Button from "../../components/Button/Button";
+import Feedback from "../../components/FeedBack/FeedBack";
 
 export const PlayersListPagePreview = lazy(() => import("./PlayersListPage"));
 
@@ -36,6 +37,7 @@ const PlayersListPage = (): React.ReactElement => {
         <div className="players-page">
           <h2 className="players-title">Players</h2>
           {isLoading ? <Loading /> : <PlayersList />}
+          <Feedback />
         </div>
       ) : (
         <>
@@ -49,6 +51,7 @@ const PlayersListPage = (): React.ReactElement => {
               text="Add"
               actionOnClick={() => {}}
             />
+            <Loading />
           </div>
         </>
       )}
