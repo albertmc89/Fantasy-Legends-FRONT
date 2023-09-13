@@ -81,3 +81,28 @@
   font-weight: 700;
   border: 1px solid var(--black);
 }
+
+.player__superior-container {
+  display: flex;
+  justify-content: end;
+}
+
+.button--circle {
+  width: 45px;
+  height: 45px;
+  background-color: var(--black);
+  border-radius: 50%;
+  border: 1px solid var(--terciary-color);
+}
+
+.player__button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.delete-logo {
+  position: absolute;
+}
