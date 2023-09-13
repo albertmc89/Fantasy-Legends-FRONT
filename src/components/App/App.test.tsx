@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter, MemoryRouter } from "react-router-dom";
-import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+import auth, { AuthStateHook, IdTokenHook } from "react-firebase-hooks/auth";
 import { Auth, User, signInWithPopup, signOut } from "firebase/auth";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
@@ -52,14 +52,83 @@ describe("Given a App component", () => {
     });
   });
 
-  describe("When it's rendered and user is logged", () => {
-    test("Then it should show a page with the text 'Players' inside a heading", async () => {
-      const headingText = "Players";
+  describe("When the user clicks on the login button", () => {
+    test("Then the login function should be called", async () => {
+      const buttonText = "Login";
+      const homeRoute = paths.homepage;
+
+      const authStateHookMock: Partial<AuthStateHook> = [null as null];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <MemoryRouter initialEntries={[homeRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const loginButton = screen.getByRole("button", { name: buttonText });
+      await userEvent.click(loginButton);
+
+      expect(signInWithPopup).toHaveBeenCalled();
+    });
+  });
+
+  describe("When the user clicks on the logout button", () => {
+    test("Then it should show 'Welcome' inside a heading", async () => {
       const buttonText = "Log out";
-      const route = paths.players;
+      const playersRoute = "/players";
 
       const authStateHookMock: Partial<AuthStateHook> = [user as User];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <MemoryRouter initialEntries={[playersRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const logoutButton = screen.getByRole("button", { name: buttonText });
+      await userEvent.click(logoutButton);
+
+      expect(signOut).toHaveBeenCalled();
+    });
+  });
+
+  describe("When the user is not logged in and it is not loading", () => {
+    test("Then it should show 'Welcome' inside a heading", async () => {
+      const authStateHookMock: Partial<AuthStateHook> = [undefined, undefined];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <MemoryRouter initialEntries={[paths.players]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const heading = await screen.findByRole("heading", {
+        name: "Welcome",
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When the user is logged in", () => {
+    test("Then it should show a page with the text 'Players' inside a heading", async () => {
+      const headingText = "Players";
+      const route = "/home";
+
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
 
       render(
         <MemoryRouter initialEntries={[route]}>
@@ -69,9 +138,29 @@ describe("Given a App component", () => {
         </MemoryRouter>,
       );
 
-      const logoutButton = screen.getByRole("button", {
-        name: buttonText,
+      const heading = await screen.findByRole("heading", {
+        name: headingText,
       });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When the user is in a incorrect path and clicks on the 'Back to home' button", () => {
+    test("Then it should show 'Welcome' inside a heading", async () => {
+      const buttonText = "Back to home";
+      const playersRoute = "/play";
+      const headingText = "Welcome";
+
+      render(
+        <MemoryRouter initialEntries={[playersRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const logoutButton = screen.getByRole("button", { name: buttonText });
       await userEvent.click(logoutButton);
 
       waitFor(() => {
@@ -80,52 +169,6 @@ describe("Given a App component", () => {
         });
 
         expect(heading).toBeInTheDocument();
-      });
-    });
-
-    describe("When the user clicks on the login button", () => {
-      test("Then the login function should be called", async () => {
-        const buttonText = "Login";
-        const homeRoute = paths.homepage;
-
-        const authStateHookMock: Partial<AuthStateHook> = [null as null];
-        auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
-        render(
-          <Provider store={store}>
-            <MemoryRouter initialEntries={[homeRoute]}>
-              <App />
-            </MemoryRouter>
-          </Provider>,
-        );
-
-        const loginButton = screen.getByRole("button", { name: buttonText });
-        await userEvent.click(loginButton);
-
-        expect(signInWithPopup).toHaveBeenCalled();
-      });
-    });
-
-    describe("When the user clicks on the logout button", () => {
-      test("Then it should show 'Welcome' inside a heading", async () => {
-        const buttonText = "Log out";
-        const playersRoute = "/players";
-
-        const authStateHookMock: Partial<AuthStateHook> = [user as User];
-        auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
-
-        render(
-          <MemoryRouter initialEntries={[playersRoute]}>
-            <Provider store={store}>
-              <App />
-            </Provider>
-          </MemoryRouter>,
-        );
-
-        const logoutButton = screen.getByRole("button", { name: buttonText });
-        await userEvent.click(logoutButton);
-
-        expect(signOut).toHaveBeenCalled();
       });
     });
   });
