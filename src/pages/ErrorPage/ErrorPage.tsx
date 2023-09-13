@@ -1,7 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import "./ErrorPage.css";
+import paths from "../../paths/paths";
+import { lazy } from "react";
 
-const Errorpage = () => {
+export const ErrorPagePreview = lazy(() => import("./ErrorPage"));
+
+const ErrorPage = () => {
+  const navigate = useNavigate();
+
+  const backHome = () => {
+    navigate(paths.players);
+  };
+
   return (
     <>
       <div className="error-container">
@@ -12,11 +23,11 @@ const Errorpage = () => {
         <Button
           text="Back to home"
           className="button--solid"
-          actionOnClick={() => {}}
+          actionOnClick={backHome}
         />
       </div>
     </>
   );
 };
 
-export default Errorpage;
+export default ErrorPage;

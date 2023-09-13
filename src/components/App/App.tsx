@@ -7,6 +7,7 @@ import { HomepagePreview } from "../../pages/HomePage/Homepage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import paths from "../../paths/paths";
 import { Suspense } from "react";
+import Errorpage from "../../pages/ErrorPage/ErrorPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -35,6 +36,14 @@ const App = (): React.ReactElement => {
             }
           />
           <Route path={paths.root} element={<Navigate to={paths.homepage} />} />
+          <Route
+            path={paths.error}
+            element={
+              <Suspense>
+                <Errorpage />
+              </Suspense>
+            }
+          />
         </Routes>
       </main>
     </>

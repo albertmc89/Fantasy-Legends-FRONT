@@ -44,7 +44,7 @@ const usePlayersApi = () => {
     } catch {
       dispatch(stopLoadingActionCreator());
 
-      showFeedBack("Error players not loaded", false);
+      showFeedBack("Error players not loaded");
       throw new Error("Can't get any player");
     }
   }, [apiUrl, user, dispatch]);
