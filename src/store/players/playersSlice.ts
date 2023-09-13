@@ -17,8 +17,19 @@ const playersSlice = createSlice({
       ...currentPlayersState,
       players: action.payload,
     }),
+    deletePlayer: (
+      currentPlayersState,
+      action: PayloadAction<string>,
+    ): PlayerState => ({
+      players: currentPlayersState.players.filter(
+        (player) => player.id !== action.payload,
+      ),
+    }),
   },
 });
 
 export const playersReducer = playersSlice.reducer;
-export const { loadPlayers: loadPlayersActionCreator } = playersSlice.actions;
+export const {
+  loadPlayers: loadPlayersActionCreator,
+  deletePlayer: deletePlayerActionCreator,
+} = playersSlice.actions;
