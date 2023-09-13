@@ -27,12 +27,13 @@ const PlayerCard = ({
             text=""
             actionOnClick={deletePlayer}
             className="button--circle"
-          />
-          <img
-            src="./img/DeleteForever.svg"
-            alt="delete logo vector"
-            className="delete-logo"
-          />
+          >
+            <img
+              src="./img/DeleteForever.svg"
+              aria-label="delete logo vector"
+              className="delete-logo"
+            />
+          </Button>
         </div>
         <img
           className="player__picture"

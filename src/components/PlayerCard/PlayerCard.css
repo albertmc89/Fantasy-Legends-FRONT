@@ -93,16 +93,12 @@
   background-color: var(--black);
   border-radius: 50%;
   border: 1px solid var(--terciary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .player__button {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 20px;
-}
-
-.delete-logo {
-  position: absolute;
 }
