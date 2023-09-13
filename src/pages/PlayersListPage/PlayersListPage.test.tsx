@@ -3,6 +3,9 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "../../store";
 import PlayersListPage from "./PlayersListPage";
+import userEvent from "@testing-library/user-event";
+import { User } from "firebase/auth";
+import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 
 describe("Given a PlayersListPage page", () => {
   describe("When its rendered", () => {
@@ -20,6 +23,33 @@ describe("Given a PlayersListPage page", () => {
       const heading = screen.getByRole("heading", { name: headerText });
 
       expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When its rendered and the user clicks the delete button inside the player with id '1'", () => {
+    test("Then it not should show the heading the text 'Leo Messi'", async () => {
+      const headerText = "Leo Messi";
+      const buttonAriaLabel = "delete logo vector";
+
+      const user: Partial<User> = {
+        getIdToken: vi.fn().mockResolvedValue("token"),
+      };
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue([user]);
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <Provider store={store}>
+          <PlayersListPage />
+        </Provider>,
+      );
+
+      const heading = await screen.findByRole("heading", { name: headerText });
+
+      const deleteButton = await screen.findAllByLabelText(buttonAriaLabel);
+      await userEvent.click(deleteButton[0]);
+
+      expect(heading).not.toBeInTheDocument();
     });
   });
 });

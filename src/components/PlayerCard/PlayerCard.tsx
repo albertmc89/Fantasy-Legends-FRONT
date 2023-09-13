@@ -1,3 +1,5 @@
+import { useAppDispatch } from "../../store";
+import { deletePlayerActionCreator } from "../../store/players/playersSlice";
 import { Player } from "../../types";
 import Button from "../Button/Button";
 import "./PlayerCard.css";
@@ -8,17 +10,38 @@ interface PlayerCardProps {
 }
 
 const PlayerCard = ({
-  player: { name, age, country, image, isBought },
+  player: { name, age, country, image, isBought, id },
   playerPosition,
 }: PlayerCardProps): React.ReactElement => {
+  const dispatch = useAppDispatch();
+
+  const deletePlayer = () => {
+    dispatch(deletePlayerActionCreator(id!));
+  };
+
   return (
     <article className="player">
-      <img
-        className="player__picture"
-        src={image}
-        alt={`Moment of a fooball game in which ${name} plays with his team`}
-        loading={playerPosition > 2 ? "lazy" : "eager"}
-      />
+      <div className="player__superior-container">
+        <div className="player__button">
+          <Button
+            text=""
+            actionOnClick={deletePlayer}
+            className="button--circle"
+          >
+            <img
+              src="./img/DeleteForever.svg"
+              aria-label="delete logo vector"
+              className="delete-logo"
+            />
+          </Button>
+        </div>
+        <img
+          className="player__picture"
+          src={image}
+          alt={`Moment of a fooball game in which ${name} plays with his team`}
+          loading={playerPosition > 2 ? "lazy" : "eager"}
+        />
+      </div>
       <div className="player__content">
         <div className="player__data-container">
           <h2 className="player__name">{name}</h2>

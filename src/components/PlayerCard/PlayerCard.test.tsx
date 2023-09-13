@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { playersMock } from "../../mocks/playersMock";
 import PlayerCard from "./PlayerCard";
-import { setupStore } from "../../store";
+import { setupStore, store } from "../../store";
 
 describe("Given a PlayerCard component", () => {
   describe("When it's rendered", () => {
@@ -15,9 +15,11 @@ describe("Given a PlayerCard component", () => {
       const playerPosition = 3;
 
       render(
-        <Provider store={store}>
-          <PlayerCard player={leoMessi} playerPosition={playerPosition} />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlayerCard player={leoMessi} playerPosition={playerPosition} />
+          </Provider>
+        </BrowserRouter>,
       );
 
       const userImage = screen.getByAltText(alternateImageText);
@@ -33,9 +35,11 @@ describe("Given a PlayerCard component", () => {
     const playerPosition = 3;
 
     render(
-      <Provider store={store}>
-        <PlayerCard player={leoMessi} playerPosition={playerPosition} />
-      </Provider>,
+      <BrowserRouter>
+        <Provider store={store}>
+          <PlayerCard player={leoMessi} playerPosition={playerPosition} />
+        </Provider>
+      </BrowserRouter>,
     );
 
     const heading = screen.getByRole("heading", { name: headingText });
@@ -49,10 +53,12 @@ describe("Given a PlayerCard component", () => {
 
     render(
       <BrowserRouter>
-        <PlayerCard
-          player={playersMock[playerPosition]}
-          playerPosition={playerPosition}
-        />
+        <Provider store={store}>
+          <PlayerCard
+            player={playersMock[playerPosition]}
+            playerPosition={playerPosition}
+          />
+        </Provider>
       </BrowserRouter>,
     );
 

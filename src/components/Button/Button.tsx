@@ -1,6 +1,7 @@
+import { PropsWithChildren } from "react";
 import "./Button.css";
 
-interface ButtonProps {
+interface ButtonProps extends PropsWithChildren {
   className?: string;
   actionOnClick: () => void;
   text: string;
@@ -10,6 +11,7 @@ const Button = ({
   className,
   actionOnClick,
   text,
+  children,
 }: ButtonProps): React.ReactElement => {
   return (
     <button
@@ -17,6 +19,7 @@ const Button = ({
       className={`button ${className}`}
       onClick={actionOnClick}
     >
+      {children}
       {text}
     </button>
   );
