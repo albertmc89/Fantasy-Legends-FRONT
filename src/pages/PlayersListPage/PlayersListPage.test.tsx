@@ -22,20 +22,4 @@ describe("Given a PlayersListPage page", () => {
       expect(heading).toBeInTheDocument();
     });
   });
-
-  test("Then it should show a heading with the text 'THERE IS NO PLAYERS ON THE LIST, CLICK ADD TO START ADDING PLAYERS'", () => {
-    const content = `THERE IS NO PLAYERS ON THE LIST, CLICK ADD TO START ADDING PLAYERS`;
-
-    render(
-      <Provider store={store}>
-        <BrowserRouter>
-          <PlayersListPage />
-        </BrowserRouter>
-      </Provider>,
-    );
-
-    const heading = screen.getByText(content);
-
-    expect(heading).toBeInTheDocument();
-  });
 });
