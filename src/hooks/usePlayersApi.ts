@@ -8,7 +8,7 @@ import {
   startLoadingActionCreator,
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
-import { showFeedBack } from "../components/FeedBack/showFeedBack";
+import { showFeedback } from "../components/Feedback/showFeedBack";
 
 const usePlayersApi = () => {
   const [user] = useIdToken(auth);
@@ -33,8 +33,8 @@ const usePlayersApi = () => {
 
         const players = apiPlayersList.map<Player>(
           ({ _id, ...apiPlayersList }) => ({
-            id: _id,
             ...apiPlayersList,
+            id: _id,
           }),
         );
         dispatch(stopLoadingActionCreator());
@@ -44,7 +44,7 @@ const usePlayersApi = () => {
     } catch {
       dispatch(stopLoadingActionCreator());
 
-      showFeedBack("Error players not loaded");
+      showFeedback("Error players not loaded");
       throw new Error("Can't get any player");
     }
   }, [apiUrl, user, dispatch]);
