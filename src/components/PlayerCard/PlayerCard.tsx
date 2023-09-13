@@ -13,12 +13,22 @@ const PlayerCard = ({
 }: PlayerCardProps): React.ReactElement => {
   return (
     <article className="player">
-      <img
-        className="player__picture"
-        src={image}
-        alt={`Moment of a fooball game in which ${name} plays with his team`}
-        loading={playerPosition > 2 ? "lazy" : "eager"}
-      />
+      <div className="player__superior-container">
+        <div className="player__button">
+          <Button text="" actionOnClick={() => {}} className="button--circle" />
+          <img
+            src="./img/DeleteForever.svg"
+            alt="delete logo vector"
+            className="delete-logo"
+          />
+        </div>
+        <img
+          className="player__picture"
+          src={image}
+          alt={`Moment of a fooball game in which ${name} plays with his team`}
+          loading={playerPosition > 2 ? "lazy" : "eager"}
+        />
+      </div>
       <div className="player__content">
         <div className="player__data-container">
           <h2 className="player__name">{name}</h2>
