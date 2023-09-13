@@ -7,9 +7,9 @@ import paths from "../../paths/paths";
 const ProtectedRoute = ({
   children,
 }: PropsWithChildren): React.ReactElement => {
-  const [user, isLoading] = useAuthState(auth);
+  const [user, isLoadingAuth] = useAuthState(auth);
 
-  if (!isLoading && !user) {
+  if (!isLoadingAuth && !user) {
     return <Navigate to={paths.homepage} />;
   }
 

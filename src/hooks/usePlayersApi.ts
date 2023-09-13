@@ -8,7 +8,7 @@ import {
   startLoadingActionCreator,
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
-import { showFeedback } from "../components/Feedback/showFeedBack";
+import { showFeedback } from "../components/FeedBack/showFeedBack";
 
 const usePlayersApi = () => {
   const [user] = useIdToken(auth);

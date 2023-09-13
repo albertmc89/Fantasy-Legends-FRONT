@@ -8,18 +8,17 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../../components/Loading/Loading";
 import "./PlayersListPage.css";
 import Button from "../../components/Button/Button";
-import Feedback from "../../components/FeedBack/FeedBack";
 
 export const PlayersListPagePreview = lazy(() => import("./PlayersListPage"));
 
 const PlayersListPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { getPlayers } = usePlayersApi();
-  const [user] = useAuthState(auth);
-  const isLoading = useAppSelector((state) => state.uiState.isLoading);
+  const [user, isLoadingAuth] = useAuthState(auth);
+  const isLoadingUi = useAppSelector((state) => state.uiState.isLoading);
   const players = useAppSelector((state) => state.playersState.players);
 
-  const hasPlayers = players.length > 0;
+  const hasPlayers = players.length === 0;
 
   useEffect(() => {
     if (user) {
@@ -33,13 +32,7 @@ const PlayersListPage = (): React.ReactElement => {
 
   return (
     <>
-      {hasPlayers ? (
-        <div className="players-page">
-          <h2 className="players-title">Players</h2>
-          {isLoading ? <Loading /> : <PlayersList />}
-          <Feedback />
-        </div>
-      ) : (
+      {hasPlayers && !isLoadingAuth && !isLoadingUi ? (
         <>
           <h2 className="players-title">Players</h2>
           <div className="empty-container">
@@ -53,6 +46,11 @@ const PlayersListPage = (): React.ReactElement => {
             />
           </div>
         </>
+      ) : (
+        <div className="players-page">
+          <h2 className="players-title">Players</h2>
+          {isLoadingUi ? <Loading /> : <PlayersList />}
+        </div>
       )}
     </>
   );
