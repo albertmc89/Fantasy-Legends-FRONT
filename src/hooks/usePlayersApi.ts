@@ -16,30 +16,31 @@ const usePlayersApi = () => {
 
   const apiUrl = import.meta.env.VITE_API_PLAYERS_URL;
 
-  const getPlayers = useCallback(async (): Promise<Player[]> => {
+  const getPlayers = useCallback(async () => {
     dispatch(startLoadingActionCreator());
     try {
-      const token = await user?.getIdToken();
+      if (user) {
+        const token = await user.getIdToken();
 
-      const { data: apiPlayers } = await axios.get<ApiPlayers>(
-        `${apiUrl}players`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        },
-      );
+        const { data: apiPlayers } = await axios.get<ApiPlayers>(
+          `${apiUrl}players`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
 
-      const apiPlayersList = apiPlayers.players;
+        const apiPlayersList = apiPlayers.players;
 
-      const players = apiPlayersList.map<Player>(
-        ({ _id, ...apiPlayersList }) => ({
-          id: _id,
-          ...apiPlayersList,
-        }),
-      );
-      dispatch(stopLoadingActionCreator());
+        const players = apiPlayersList.map<Player>(
+          ({ _id, ...apiPlayersList }) => ({
+            id: _id,
+            ...apiPlayersList,
+          }),
+        );
+        dispatch(stopLoadingActionCreator());
 
-      showFeedBack("Players succesfully loaded", true);
-      return players;
+        return players;
+      }
     } catch {
       dispatch(stopLoadingActionCreator());
 
