@@ -3,4 +3,5 @@ export interface PathsStructure {
   homepage: string;
   players: string;
   error: string;
+  addplayer: string;
 }

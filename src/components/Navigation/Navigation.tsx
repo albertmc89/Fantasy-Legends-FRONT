@@ -12,7 +12,7 @@ const Navigation = (): React.ReactElement => {
             </NavLink>
           </li>
           <li className="navigation__add">
-            <NavLink className="navigation-link" to="/add-player">
+            <NavLink className="navigation-link" to="/addplayer">
               Add player
             </NavLink>
           </li>
