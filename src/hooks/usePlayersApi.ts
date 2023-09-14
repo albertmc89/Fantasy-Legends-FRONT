@@ -44,7 +44,7 @@ const usePlayersApi = () => {
     } catch {
       dispatch(stopLoadingActionCreator());
 
-      showFeedback("Error players not loaded");
+      showFeedback("Error players not loaded", "error");
       throw new Error("Can't get any player");
     }
   }, [apiUrl, user, dispatch]);
@@ -62,8 +62,10 @@ const usePlayersApi = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
 
+        showFeedback("Player successfully deleted", "success");
         return data;
       } catch (error: unknown) {
+        showFeedback("Couldn't delete player", "error");
         throw new Error("Couldn't delete player");
       }
     },
