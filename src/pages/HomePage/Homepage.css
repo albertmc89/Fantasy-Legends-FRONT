@@ -1,11 +1,9 @@
 .container {
   background-image: var(--background-image);
   min-height: 100vh;
-  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -23,7 +21,7 @@
 }
 
 .login-container__avatar {
-  width: 52px;
+  width: 53px;
   height: 53px;
   border-radius: 50%;
   background-color: var(--white);
@@ -35,11 +33,11 @@
 .login-container__image {
   width: 32.5px;
   height: 35px;
+  aspect-ratio: 1;
 }
 
 .login-container__title-container {
   color: var(--white);
-  justify-content: center;
   align-items: center;
   display: flex;
   flex-direction: column;

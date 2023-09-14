@@ -32,6 +32,8 @@ const PlayerCard = ({
               src="./img/DeleteForever.svg"
               aria-label="delete logo vector"
               className="delete-logo"
+              width={30}
+              height={30}
             />
           </Button>
         </div>
