@@ -61,3 +61,5 @@ export const apiMockPlayers: ApiPlayer[] = [
     user: "userId",
   },
 ];
+
+export const idPlayerMock = playersMock[0].id;

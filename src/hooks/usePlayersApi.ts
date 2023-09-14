@@ -48,6 +48,7 @@ const usePlayersApi = () => {
       throw new Error("Can't get any player");
     }
   }, [apiUrl, user, dispatch]);
+
   const deletePlayerApi = useCallback(
     async (id: string) => {
       try {
