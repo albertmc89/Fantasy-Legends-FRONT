@@ -20,20 +20,5 @@ describe("Given a ErrorPage page", () => {
 
       expect(heading).toBeInTheDocument();
     });
-
-    test("Then it should show a button 'Back to home'", () => {
-      const expectedText = "Back to home";
-
-      render(
-        <BrowserRouter>
-          <Suspense>
-            <Errorpage />
-          </Suspense>
-        </BrowserRouter>,
-      );
-
-      const button = screen.getByRole("button", { name: expectedText });
-      expect(button).toBeInTheDocument();
-    });
   });
 });

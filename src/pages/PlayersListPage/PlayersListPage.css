@@ -34,3 +34,11 @@
   font-weight: 600;
   font-size: 1.125rem;
 }
+
+.button--solid {
+  color: var(--white);
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

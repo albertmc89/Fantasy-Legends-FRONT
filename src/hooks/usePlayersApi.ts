@@ -48,8 +48,28 @@ const usePlayersApi = () => {
       throw new Error("Can't get any player");
     }
   }, [apiUrl, user, dispatch]);
+  const deletePlayerApi = useCallback(
+    async (id: string) => {
+      try {
+        if (!user) {
+          throw Error();
+        }
 
-  return { getPlayers };
+        const token = await user.getIdToken();
+
+        const { data } = await axios.delete<string>(`${apiUrl}players/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        return data;
+      } catch (error: unknown) {
+        throw new Error("Couldn't delete player");
+      }
+    },
+    [apiUrl, user],
+  );
+
+  return { getPlayers, deletePlayerApi };
 };
 
 export default usePlayersApi;
