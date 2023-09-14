@@ -13,7 +13,7 @@ const ErrorPage = () => {
           <span className="error__number">404</span>
           <span className="error__title">Page not found</span>
         </article>
-        <NavLink to={paths.homepage} className="button--solid">
+        <NavLink to={paths.homepage} className="button button--solid">
           Back to home
         </NavLink>
       </div>

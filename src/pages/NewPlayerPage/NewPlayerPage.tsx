@@ -1,3 +1,4 @@
+import NewPlayerForm from "../../components/NewPlayerForm/NewPlayerForm";
 import "./NewPlayerPage.css";
 
 const NewPlayerPage = () => {
@@ -5,6 +6,7 @@ const NewPlayerPage = () => {
     <>
       <div className="addplayer">
         <h2 className="title">Add player</h2>
+        <NewPlayerForm />
       </div>
     </>
   );

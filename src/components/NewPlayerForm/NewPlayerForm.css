@@ -1,0 +1,41 @@
+.form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 5px;
+}
+
+.from-control {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+input {
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--black);
+}
+
+select {
+  text-align: center;
+  border: 1px solid var(--black);
+  border-radius: 5px;
+  padding: 10px;
+  color: var(--black);
+}
+
+.options__control {
+  display: flex;
+  align-content: space-around;
+  gap: 5px;
+  width: 20%;
+}
+
+.form__button-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
