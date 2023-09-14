@@ -160,8 +160,8 @@ describe("Given a App component", () => {
         </MemoryRouter>,
       );
 
-      const logoutButton = screen.getByRole("button", { name: buttonText });
-      await userEvent.click(logoutButton);
+      const button = await screen.findByRole("link", { name: buttonText });
+      await userEvent.click(button);
 
       waitFor(() => {
         const heading = screen.getByRole("heading", {

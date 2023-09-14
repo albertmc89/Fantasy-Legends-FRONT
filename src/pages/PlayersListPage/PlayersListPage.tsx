@@ -7,7 +7,8 @@ import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../../components/Loading/Loading";
 import "./PlayersListPage.css";
-import Button from "../../components/Button/Button";
+import paths from "../../paths/paths";
+import { NavLink } from "react-router-dom";
 
 export const PlayersListPagePreview = lazy(() => import("./PlayersListPage"));
 
@@ -39,11 +40,9 @@ const PlayersListPage = (): React.ReactElement => {
             <span className="empty-content" aria-label="content">
               THERE IS NO PLAYERS ON THE LIST, CLICK ADD TO START ADDING PLAYERS
             </span>
-            <Button
-              className="button--solid"
-              text="Add"
-              actionOnClick={() => {}}
-            />
+            <NavLink to={paths.homepage} className="button button--solid">
+              Add
+            </NavLink>
           </div>
         </>
       ) : (

@@ -1,3 +1,4 @@
+import usePlayersApi from "../../hooks/usePlayersApi";
 import { useAppDispatch } from "../../store";
 import { deletePlayerActionCreator } from "../../store/players/playersSlice";
 import { Player } from "../../types";
@@ -14,8 +15,11 @@ const PlayerCard = ({
   playerPosition,
 }: PlayerCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { deletePlayerApi } = usePlayersApi();
 
-  const deletePlayer = () => {
+  const deletePlayer = async () => {
+    await deletePlayerApi(id!);
+
     dispatch(deletePlayerActionCreator(id!));
   };
 

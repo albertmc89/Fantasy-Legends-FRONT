@@ -1,11 +1,12 @@
 import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { store } from "../../store";
+import { setupStore, store } from "../../store";
 import PlayersListPage from "./PlayersListPage";
 import userEvent from "@testing-library/user-event";
 import { User } from "firebase/auth";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
+import { playersMock } from "../../mocks/playersMock";
 
 describe("Given a PlayersListPage page", () => {
   describe("When its rendered", () => {
@@ -28,8 +29,9 @@ describe("Given a PlayersListPage page", () => {
 
   describe("When its rendered and the user clicks the delete button inside the player with id '1'", () => {
     test("Then it not should show the heading the text 'Leo Messi'", async () => {
-      const headerText = "Leo Messi";
+      const headingText = "Leo Messi";
       const buttonAriaLabel = "delete logo vector";
+      const store = setupStore({ playersState: { players: playersMock } });
 
       const user: Partial<User> = {
         getIdToken: vi.fn().mockResolvedValue("token"),
@@ -44,7 +46,7 @@ describe("Given a PlayersListPage page", () => {
         </Provider>,
       );
 
-      const heading = await screen.findByRole("heading", { name: headerText });
+      const heading = await screen.findByRole("heading", { name: headingText });
 
       const deleteButton = await screen.findAllByLabelText(buttonAriaLabel);
       await userEvent.click(deleteButton[0]);

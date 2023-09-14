@@ -2,12 +2,12 @@ import { renderHook } from "@testing-library/react";
 import auth, { AuthStateHook } from "react-firebase-hooks/auth";
 import { User } from "firebase/auth";
 import { Provider } from "react-redux";
-import { setupStore } from "../store";
-import { errorHandlers } from "../mocks/handlers";
+import { setupStore } from "../../store";
+import { errorHandlers } from "../../mocks/handlers";
 import { PropsWithChildren } from "react";
-import { playersMock } from "../mocks/playersMock";
-import usePlayersApi from "./usePlayersApi";
-import { server } from "../mocks/server";
+import { playersMock } from "../../mocks/playersMock";
+import usePlayersApi from "../usePlayersApi";
+import { server } from "../../mocks/server";
 
 beforeEach(() => {
   vi.clearAllMocks();
