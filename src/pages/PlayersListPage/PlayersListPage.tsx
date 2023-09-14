@@ -35,14 +35,17 @@ const PlayersListPage = (): React.ReactElement => {
     <>
       {hasPlayers && !isLoadingAuth && !isLoadingUi ? (
         <>
-          <h2 className="players-title">Players</h2>
-          <div className="empty-container">
-            <span className="empty-content" aria-label="content">
-              THERE IS NO PLAYERS ON THE LIST, CLICK ADD TO START ADDING PLAYERS
-            </span>
-            <NavLink to={paths.homepage} className="button button--solid">
-              Add
-            </NavLink>
+          <div className="players-page">
+            <h2 className="players-title">Players</h2>
+            <div className="empty-container">
+              <span className="empty-content" aria-label="content">
+                THERE IS NO PLAYERS ON THE LIST, CLICK ADD TO START ADDING
+                PLAYERS
+              </span>
+              <NavLink to={paths.homepage} className="button button--solid">
+                Add
+              </NavLink>
+            </div>
           </div>
         </>
       ) : (

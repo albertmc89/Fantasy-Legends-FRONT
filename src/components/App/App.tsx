@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import paths from "../../paths/paths";
 import Header from "../Header/Header";
 import Errorpage from "../../pages/ErrorPage/ErrorPage";
+import NewPlayerPage from "../../pages/NewPlayerPage/NewPlayerPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -33,6 +34,16 @@ const App = (): React.ReactElement => {
               <ProtectedRoute>
                 <Suspense>
                   <PlayersListPagePreview />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={paths.addplayer}
+            element={
+              <ProtectedRoute>
+                <Suspense>
+                  <NewPlayerPage />
                 </Suspense>
               </ProtectedRoute>
             }

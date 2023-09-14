@@ -5,6 +5,7 @@ const paths: PathsStructure = {
   homepage: "/home",
   players: "/players",
   error: "/*",
+  addplayer: "/addplayer",
 };
 
 export default paths;
