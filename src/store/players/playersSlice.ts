@@ -25,6 +25,12 @@ const playersSlice = createSlice({
         (player) => player.id !== action.payload,
       ),
     }),
+    addPlayer: (
+      currentPlayersState,
+      action: PayloadAction<Player>,
+    ): PlayerState => ({
+      players: [...currentPlayersState.players, action.payload],
+    }),
   },
 });
 
@@ -32,4 +38,5 @@ export const playersReducer = playersSlice.reducer;
 export const {
   loadPlayers: loadPlayersActionCreator,
   deletePlayer: deletePlayerActionCreator,
+  addPlayer: addPlayerActionCreator,
 } = playersSlice.actions;
