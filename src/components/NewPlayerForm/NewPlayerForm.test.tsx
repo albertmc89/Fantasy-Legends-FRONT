@@ -5,6 +5,8 @@ import { store } from "../../store";
 import userEvent from "@testing-library/user-event";
 
 describe("Given a NewPlayerForm component", () => {
+  const mockSubmit = vi.fn();
+
   const nameInputLabelText = "Name:";
   const ageInputLabelText = "Age:";
   const countryInputLabelText = "Country:";
@@ -18,7 +20,7 @@ describe("Given a NewPlayerForm component", () => {
     test("Then it should show a 'Name:', 'Age:', 'Country:', 'Height(cm):', 'Goals:', 'Games:', 'Position:, 'Image:' fields", () => {
       render(
         <Provider store={store}>
-          <NewPlayerForm />
+          <NewPlayerForm onSubmitPlayer={mockSubmit} />
         </Provider>,
       );
 
@@ -56,7 +58,7 @@ describe("Given a NewPlayerForm component", () => {
 
       render(
         <Provider store={store}>
-          <NewPlayerForm />
+          <NewPlayerForm onSubmitPlayer={mockSubmit} />
         </Provider>,
       );
 
@@ -86,6 +88,47 @@ describe("Given a NewPlayerForm component", () => {
       expect(gamesInput).toHaveValue(gamesNumber);
       expect(positionInput).toHaveValue(positionText);
       expect(imageInput).toHaveValue(imageText);
+    });
+  });
+
+  describe("When all inputs are filled and the user submits the form", () => {
+    test("Then the action on submit function should be called", async () => {
+      const buttonText = "Add";
+
+      const nameText = "Leo Messi";
+      const ageNumber = 36;
+      const countryText = "Argentina";
+      const heightNumber = 169;
+      const goalsNumber = 818;
+      const gamesNumber = 1038;
+      const positionText = "ST";
+      const imageText =
+        "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp";
+
+      render(<NewPlayerForm onSubmitPlayer={mockSubmit} />);
+
+      const nameInput = screen.getByLabelText(nameInputLabelText);
+      const ageInput = screen.getByLabelText(ageInputLabelText);
+      const countryInput = screen.getByLabelText(countryInputLabelText);
+      const heightInput = screen.getByLabelText(heightInputLabelText);
+      const goalsInput = screen.getByLabelText(goalsInputLabelText);
+      const gamesInput = screen.getByLabelText(gamesInputLabelText);
+      const positionInput = screen.getByLabelText(positionInputLabelText);
+      const imageInput = screen.getByLabelText(imageInputLabelText);
+
+      await userEvent.type(nameInput, nameText);
+      await userEvent.type(ageInput, ageNumber.toString());
+      await userEvent.selectOptions(countryInput, countryText);
+      await userEvent.type(heightInput, heightNumber.toString());
+      await userEvent.type(goalsInput, goalsNumber.toString());
+      await userEvent.type(gamesInput, gamesNumber.toString());
+      await userEvent.selectOptions(positionInput, positionText);
+      await userEvent.type(imageInput, imageText);
+
+      const button = screen.getByRole("button", { name: buttonText });
+      await userEvent.click(button);
+
+      expect(mockSubmit).toHaveBeenCalled();
     });
   });
 });
