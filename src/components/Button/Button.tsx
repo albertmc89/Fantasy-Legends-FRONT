@@ -1,9 +1,9 @@
-import { PropsWithChildren } from "react";
+import { ButtonHTMLAttributes } from "react";
 import "./Button.css";
 
-interface ButtonProps extends PropsWithChildren {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
-  actionOnClick: () => void;
+  actionOnClick?: () => void;
   text: string;
 }
 
@@ -12,12 +12,13 @@ const Button = ({
   actionOnClick,
   text,
   children,
+  disabled,
 }: ButtonProps): React.ReactElement => {
   return (
     <button
-      type="button"
       className={`button ${className}`}
       onClick={actionOnClick}
+      disabled={disabled}
     >
       {children}
       {text}

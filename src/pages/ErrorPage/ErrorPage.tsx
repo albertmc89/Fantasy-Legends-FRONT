@@ -7,17 +7,15 @@ export const ErrorPagePreview = lazy(() => import("./ErrorPage"));
 
 const ErrorPage = () => {
   return (
-    <>
-      <div className="error-container">
-        <article className="error">
-          <span className="error__number">404</span>
-          <span className="error__title">Page not found</span>
-        </article>
-        <NavLink to={paths.homepage} className="button button--solid">
-          Back to home
-        </NavLink>
-      </div>
-    </>
+    <div className="error-container">
+      <article className="error">
+        <span className="error__number">404</span>
+        <span className="error__title">Page not found</span>
+      </article>
+      <NavLink to={paths.homepage} className="button button--solid">
+        Back to home
+      </NavLink>
+    </div>
   );
 };
 

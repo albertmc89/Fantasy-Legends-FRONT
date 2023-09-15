@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Player } from "../../types";
 import "./NewPlayerForm.css";
 import Button from "../Button/Button";
 
-const NewPlayerForm = () => {
+interface NewFormProps {
+  onSubmitPlayer: (newplayer: Omit<Player, "id" | "user" | "isBought">) => void;
+}
+
+const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
   const [newPlayer, setNewPlayer] = useState<
     Omit<Player, "id" | "user" | "isBought">
   >({
@@ -24,8 +28,24 @@ const NewPlayerForm = () => {
     });
   };
 
+  const submitForm = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    onSubmitPlayer(newPlayer);
+  };
+
+  const [canSubmitForm, setcanSubmitForm] = useState(false);
+
+  useEffect(() => {
+    setcanSubmitForm(
+      Object.values(newPlayer).every((value) => {
+        return Boolean(value);
+      }),
+    );
+  }, [newPlayer]);
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={submitForm}>
       <div className="from-control">
         <label htmlFor="name" className="form__label">
           Name:
@@ -36,6 +56,7 @@ const NewPlayerForm = () => {
           value={newPlayer.name}
           className="form__input"
           onChange={changeNewPlayer}
+          required
         />
       </div>
       <div className="from-control">
@@ -50,13 +71,14 @@ const NewPlayerForm = () => {
           value={newPlayer.age === 0 ? "" : newPlayer.age}
           className="form__input"
           onChange={changeNewPlayer}
+          required
         />
       </div>
       <div className="from-control">
         <label htmlFor="country" className="form__label">
           Country:
         </label>
-        <select className="form__select" id="country">
+        <select className="form__select" id="country" required>
           <option value="">--Select a country--</option>
           <option value="Afghanistan">Afghanistan</option>
           <option value="Aland Islands">Aland Islands</option>
@@ -370,6 +392,7 @@ const NewPlayerForm = () => {
           value={newPlayer.height === 0 ? "" : newPlayer.height}
           className="form__input"
           onChange={changeNewPlayer}
+          required
         />
       </div>
       <div className="from-control">
@@ -382,6 +405,7 @@ const NewPlayerForm = () => {
           value={newPlayer.goals === 0 ? "" : newPlayer.goals}
           className="form__input"
           onChange={changeNewPlayer}
+          required
         />
       </div>
       <div className="from-control">
@@ -394,6 +418,7 @@ const NewPlayerForm = () => {
           value={newPlayer.games === 0 ? "" : newPlayer.games}
           className="form__input"
           onChange={changeNewPlayer}
+          required
         />
       </div>
       <div className="from-control">
@@ -418,10 +443,11 @@ const NewPlayerForm = () => {
           value={newPlayer.image}
           className="form__input"
           onChange={changeNewPlayer}
+          required
         />
       </div>
       <div className="form__button-container">
-        <Button actionOnClick={() => {}} text="Add" className="button--solid" />
+        <Button disabled={canSubmitForm} text="Add" className="button--solid" />
       </div>
     </form>
   );
