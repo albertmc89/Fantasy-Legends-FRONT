@@ -12,15 +12,8 @@
   gap: 5px;
 }
 
-input {
-  border: 1px solid var(--black);
-  border-radius: 5px;
-  padding: 10px;
-  color: var(--black);
-}
-
+input,
 select {
-  text-align: center;
   border: 1px solid var(--black);
   border-radius: 5px;
   padding: 10px;

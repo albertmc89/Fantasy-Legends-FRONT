@@ -82,8 +82,8 @@ describe("Given a NewPlayerForm component", () => {
       expect(ageInput).toHaveValue(ageNumber);
       expect(countryInput).toHaveValue(countryText);
       expect(heightInput).toHaveValue(heightNumber);
-      expect(goalsInput).toHaveValue(goalsNumber.toString());
-      expect(gamesInput).toHaveValue(gamesNumber.toString());
+      expect(goalsInput).toHaveValue(goalsNumber);
+      expect(gamesInput).toHaveValue(gamesNumber);
       expect(positionInput).toHaveValue(positionText);
       expect(imageInput).toHaveValue(imageText);
     });

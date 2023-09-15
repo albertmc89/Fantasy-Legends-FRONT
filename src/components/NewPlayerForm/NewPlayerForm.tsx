@@ -377,7 +377,7 @@ const NewPlayerForm = () => {
           Goals:
         </label>
         <input
-          type="text"
+          type="number"
           id="goals"
           value={newPlayer.goals === 0 ? "" : newPlayer.goals}
           className="form__input"
@@ -389,7 +389,7 @@ const NewPlayerForm = () => {
           Games:
         </label>
         <input
-          type="text"
+          type="number"
           id="games"
           value={newPlayer.games === 0 ? "" : newPlayer.games}
           className="form__input"
@@ -421,11 +421,7 @@ const NewPlayerForm = () => {
         />
       </div>
       <div className="form__button-container">
-        <Button
-          actionOnClick={() => {}}
-          text="Add"
-          className="button button--opacity"
-        />
+        <Button actionOnClick={() => {}} text="Add" className="button--solid" />
       </div>
     </form>
   );
