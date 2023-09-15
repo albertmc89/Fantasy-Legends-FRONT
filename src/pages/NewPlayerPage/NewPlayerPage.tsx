@@ -1,8 +1,24 @@
 import NewPlayerForm from "../../components/NewPlayerForm/NewPlayerForm";
+import { useAppDispatch } from "../../store";
+import { addPlayerActionCreator } from "../../store/players/playersSlice";
+import { Player } from "../../types";
+import usePlayersApi from "../../hooks/usePlayersApi";
 import "./NewPlayerPage.css";
+import { useNavigate } from "react-router-dom";
+import paths from "../../paths/paths";
 
 const NewPlayerPage = () => {
-  const onSubmitPlayer = () => {};
+  const dispatch = useAppDispatch();
+  const { addPlayerApi } = usePlayersApi();
+  const navigate = useNavigate();
+
+  const onSubmitPlayer = async (newplayer: Omit<Player, "id" | "user">) => {
+    const player = await addPlayerApi(newplayer);
+
+    dispatch(addPlayerActionCreator(player));
+
+    navigate(paths.players);
+  };
 
   return (
     <div className="addplayer">
