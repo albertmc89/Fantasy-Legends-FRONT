@@ -21,6 +21,7 @@ const playersSlice = createSlice({
       currentPlayersState,
       action: PayloadAction<string>,
     ): PlayerState => ({
+      ...currentPlayersState,
       players: currentPlayersState.players.filter(
         (player) => player.id !== action.payload,
       ),

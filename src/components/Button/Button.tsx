@@ -12,14 +12,9 @@ const Button = ({
   actionOnClick,
   text,
   children,
-  disabled,
 }: ButtonProps): React.ReactElement => {
   return (
-    <button
-      className={`button ${className}`}
-      onClick={actionOnClick}
-      disabled={disabled}
-    >
+    <button className={`button ${className}`} onClick={actionOnClick}>
       {children}
       {text}
     </button>
