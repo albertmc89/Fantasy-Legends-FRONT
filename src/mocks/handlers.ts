@@ -23,6 +23,12 @@ export const handlers = [
       return res(ctx.status(201), ctx.json(apiMockPlayers));
     },
   ),
+  rest.get(
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${apiMockPlayers[0]._id}`,
+    (_req, res, ctx) => {
+      return res(ctx.status(200), ctx.json(apiMockPlayers[0]));
+    },
+  ),
 ];
 
 export const errorHandlers = [
@@ -42,6 +48,12 @@ export const errorHandlers = [
     `${import.meta.env.VITE_API_PLAYERS_URL}players`,
     (_req, res, ctx) => {
       return res(ctx.status(404, "Couldn't add player"));
+    },
+  ),
+  rest.get(
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${apiMockPlayers[0]._id}`,
+    (_req, res, ctx) => {
+      return res(ctx.status(404, "Couldn't load the player"));
     },
   ),
 ];
