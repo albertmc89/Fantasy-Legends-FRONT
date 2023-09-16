@@ -1,4 +1,4 @@
-import { playersCreatedMock, playersMock } from "../../../mocks/playersMock";
+import { playerCreatedApiMock, playersMock } from "../../../mocks/playersMock";
 import { PlayerState } from "../../types";
 import { addPlayerActionCreator, playersReducer } from "../playersSlice";
 
@@ -9,11 +9,11 @@ describe("Given a playersReducer reducer", () => {
         players: playersMock,
       };
 
-      const addPlayerAction = addPlayerActionCreator(playersCreatedMock);
+      const addPlayerAction = addPlayerActionCreator(playerCreatedApiMock);
 
       const newUserState = playersReducer(currentPlayersState, addPlayerAction);
 
-      expect(newUserState.players).toContain(playersCreatedMock);
+      expect(newUserState.players).toContain(playerCreatedApiMock);
       expect(newUserState.players).toHaveLength(
         currentPlayersState.players.length + 1,
       );

@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Player } from "../../types";
 import "./NewPlayerForm.css";
 import Button from "../Button/Button";
 
 interface NewFormProps {
-  onSubmitPlayer: (newplayer: Omit<Player, "id" | "user" | "isBought">) => void;
+  onSubmitPlayer: (newplayer: Omit<Player, "id" | "user">) => void;
 }
 
 const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
-  const [newPlayer, setNewPlayer] = useState<
-    Omit<Player, "id" | "user" | "isBought">
-  >({
+  const [newPlayer, setNewPlayer] = useState<Omit<Player, "id" | "user">>({
     name: "",
     country: "",
     age: 0,
@@ -19,9 +17,12 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
     games: 0,
     position: "",
     image: "",
+    isBought: true,
   });
 
-  const changeNewPlayer = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const changeNewPlayer = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     setNewPlayer({
       ...newPlayer,
       [event.target.id]: event.target.value,
@@ -33,16 +34,6 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
 
     onSubmitPlayer(newPlayer);
   };
-
-  const [canSubmitForm, setcanSubmitForm] = useState(false);
-
-  useEffect(() => {
-    setcanSubmitForm(
-      Object.values(newPlayer).every((value) => {
-        return Boolean(value);
-      }),
-    );
-  }, [newPlayer]);
 
   return (
     <form className="form" onSubmit={submitForm}>
@@ -78,7 +69,12 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
         <label htmlFor="country" className="form__label">
           Country:
         </label>
-        <select className="form__select" id="country" required>
+        <select
+          className="form__select"
+          id="country"
+          onChange={changeNewPlayer}
+          required
+        >
           <option value="">--Select a country--</option>
           <option value="Afghanistan">Afghanistan</option>
           <option value="Aland Islands">Aland Islands</option>
@@ -389,6 +385,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
         <input
           type="number"
           id="height"
+          min="1"
           value={newPlayer.height === 0 ? "" : newPlayer.height}
           className="form__input"
           onChange={changeNewPlayer}
@@ -402,6 +399,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
         <input
           type="number"
           id="goals"
+          min="0"
           value={newPlayer.goals === 0 ? "" : newPlayer.goals}
           className="form__input"
           onChange={changeNewPlayer}
@@ -415,6 +413,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
         <input
           type="number"
           id="games"
+          min="0"
           value={newPlayer.games === 0 ? "" : newPlayer.games}
           className="form__input"
           onChange={changeNewPlayer}
@@ -425,7 +424,12 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
         <label htmlFor="position" className="form__label">
           Position:
         </label>
-        <select name="position" id="position">
+        <select
+          name="position"
+          id="position"
+          onChange={changeNewPlayer}
+          required
+        >
           <option value="">--Select a position--</option>
           <option value="GK">GK</option>
           <option value="DEF">DEF</option>
@@ -447,7 +451,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
         />
       </div>
       <div className="form__button-container">
-        <Button disabled={canSubmitForm} text="Add" className="button--solid" />
+        <Button text="Add" className="button--solid" />
       </div>
     </form>
   );

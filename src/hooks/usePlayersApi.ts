@@ -72,7 +72,34 @@ const usePlayersApi = () => {
     [apiUrl, user],
   );
 
-  return { getPlayers, deletePlayerApi };
+  const addPlayerApi = useCallback(
+    async (newPlayer: Omit<Player, "id" | "user">) => {
+      try {
+        if (!user) {
+          throw Error();
+        }
+
+        const token = await user.getIdToken();
+
+        const { data } = await axios.post<Player>(
+          `${apiUrl}players`,
+          newPlayer,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        showFeedback("Player successfully added", "success");
+        return data;
+      } catch (error: unknown) {
+        showFeedback("Couldn't add player", "error");
+        throw new Error("Couldn't add player");
+      }
+    },
+    [apiUrl, user],
+  );
+
+  return { getPlayers, deletePlayerApi, addPlayerApi };
 };
 
 export default usePlayersApi;
