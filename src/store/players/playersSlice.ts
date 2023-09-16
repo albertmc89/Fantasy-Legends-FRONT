@@ -32,6 +32,13 @@ const playersSlice = createSlice({
     ): PlayerState => ({
       players: [...currentPlayersState.players, action.payload],
     }),
+    loadSelectedPlayer: (
+      currentPlayersState: PlayerState,
+      action: PayloadAction<Player>,
+    ): PlayerState => ({
+      ...currentPlayersState,
+      selectedPlayer: action.payload,
+    }),
   },
 });
 
@@ -40,4 +47,5 @@ export const {
   loadPlayers: loadPlayersActionCreator,
   deletePlayer: deletePlayerActionCreator,
   addPlayer: addPlayerActionCreator,
+  loadSelectedPlayer: loadSelectedPlayerActionCreator,
 } = playersSlice.actions;
