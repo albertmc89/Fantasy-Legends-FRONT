@@ -4,9 +4,10 @@ import auth, { AuthStateHook, IdTokenHook } from "react-firebase-hooks/auth";
 import { Auth, User, signInWithPopup, signOut } from "firebase/auth";
 import userEvent from "@testing-library/user-event";
 import { Provider } from "react-redux";
-import { store } from "../../store";
+import { setupStore, store } from "../../store";
 import paths from "../../paths/paths";
 import App from "./App";
+import { playersMock } from "../../mocks/playersMock";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -152,6 +153,9 @@ describe("Given a App component", () => {
       const playersRoute = "/play";
       const headingText = "Welcome";
 
+      const authStateHookMock: Partial<AuthStateHook> = [undefined, undefined];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
       render(
         <MemoryRouter initialEntries={[playersRoute]}>
           <Provider store={store}>
@@ -163,8 +167,82 @@ describe("Given a App component", () => {
       const button = await screen.findByRole("link", { name: buttonText });
       await userEvent.click(button);
 
-      waitFor(() => {
-        const heading = screen.getByRole("heading", {
+      const heading = await screen.findByRole("heading", {
+        name: headingText,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When its rendered and the user clicks the add button with the form correctly filled in", () => {
+    const nameInputLabelText = "Name:";
+    const ageInputLabelText = "Age:";
+    const countryInputLabelText = "Country:";
+    const heightInputLabelText = "Height(cm):";
+    const goalsInputLabelText = "Goals:";
+    const gamesInputLabelText = "Games:";
+    const positionInputLabelText = "Position:";
+    const imageInputLabelText = "Image:";
+
+    test("Then it should show the new player added on the list", async () => {
+      const buttonText = "Add";
+
+      const nameText = "Leo Messi";
+      const ageNumber = 36;
+      const countryText = "Argentina";
+      const heightNumber = 169;
+      const goalsNumber = 818;
+      const gamesNumber = 1038;
+      const positionText = "ST";
+      const imageText =
+        "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp";
+
+      const store = setupStore({ playersState: { players: playersMock } });
+
+      const playersRoute = paths.addplayer;
+      const headingText = "Leo Messi";
+
+      const user: Partial<User> = {
+        getIdToken: vi.fn().mockResolvedValue("token"),
+      };
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue([user]);
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <MemoryRouter initialEntries={[playersRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const nameInput = screen.getByLabelText(nameInputLabelText);
+      const ageInput = screen.getByLabelText(ageInputLabelText);
+      const countryInput = screen.getByLabelText(countryInputLabelText);
+      const heightInput = screen.getByLabelText(heightInputLabelText);
+      const goalsInput = screen.getByLabelText(goalsInputLabelText);
+      const gamesInput = screen.getByLabelText(gamesInputLabelText);
+      const positionInput = screen.getByLabelText(positionInputLabelText);
+      const imageInput = screen.getByLabelText(imageInputLabelText);
+
+      await userEvent.type(nameInput, nameText);
+      await userEvent.type(ageInput, ageNumber.toString());
+      await userEvent.selectOptions(countryInput, countryText);
+      await userEvent.type(heightInput, heightNumber.toString());
+      await userEvent.type(goalsInput, goalsNumber.toString());
+      await userEvent.type(gamesInput, gamesNumber.toString());
+      await userEvent.selectOptions(positionInput, positionText);
+      await userEvent.type(imageInput, imageText);
+
+      const submitButton = await screen.findByRole("button", {
+        name: buttonText,
+      });
+      await userEvent.click(submitButton);
+
+      await waitFor(async () => {
+        const heading = await screen.findByRole("heading", {
           name: headingText,
         });
 
