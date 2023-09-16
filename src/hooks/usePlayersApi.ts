@@ -52,6 +52,7 @@ const usePlayersApi = () => {
   const deletePlayerApi = useCallback(
     async (id: string) => {
       try {
+        dispatch(startLoadingActionCreator());
         if (!user) {
           throw Error();
         }
@@ -61,6 +62,7 @@ const usePlayersApi = () => {
         const { data } = await axios.delete<string>(`${apiUrl}players/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        dispatch(stopLoadingActionCreator());
 
         showFeedback("Player successfully deleted", "success");
         return data;
@@ -69,7 +71,7 @@ const usePlayersApi = () => {
         throw new Error("Couldn't delete player");
       }
     },
-    [apiUrl, user],
+    [apiUrl, user, dispatch],
   );
 
   const addPlayerApi = useCallback(
@@ -99,7 +101,33 @@ const usePlayersApi = () => {
     [apiUrl, user],
   );
 
-  return { getPlayers, deletePlayerApi, addPlayerApi };
+  const loadSelectedPlayerApi = useCallback(
+    async (id: string) => {
+      try {
+        dispatch(startLoadingActionCreator());
+        if (!user) {
+          throw Error();
+        }
+
+        const token = await user.getIdToken();
+
+        const { data } = await axios.get<string>(`${apiUrl}players/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        dispatch(stopLoadingActionCreator());
+
+        showFeedback("Player successfully loaded", "success");
+
+        return data;
+      } catch (error: unknown) {
+        showFeedback("Couldn't load the player", "error");
+        throw new Error("Couldn't load the player");
+      }
+    },
+    [apiUrl, user, dispatch],
+  );
+
+  return { getPlayers, deletePlayerApi, addPlayerApi, loadSelectedPlayerApi };
 };
 
 export default usePlayersApi;

@@ -31,6 +31,8 @@ export const playersMock: Player[] = [
   },
 ];
 
+export const idPlayerMock = playersMock[0].id;
+
 export const apiMockPlayers: ApiPlayer[] = [
   {
     _id: "1",
@@ -61,8 +63,6 @@ export const apiMockPlayers: ApiPlayer[] = [
     user: "userId",
   },
 ];
-
-export const idPlayerMock = playersMock[0].id;
 
 export const playerCreatedApiMock = {
   id: "650030d670bf0a89283a4ac5",
