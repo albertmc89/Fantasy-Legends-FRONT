@@ -1,0 +1,68 @@
+.player-detail {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  min-height: 483px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.player__detail-name {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
+}
+
+.player__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  justify-items: center;
+  align-items: center;
+  gap: 38px;
+  padding: 20px;
+}
+
+.player__stats-country,
+.player__stats-age,
+.player__stats-height,
+.player__stats-goals,
+.player__stats-position,
+.player__stats-games {
+  width: 95px;
+  height: 122px;
+  background-color: var(--white);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-detail {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--detail-color);
+}
+
+.title-container {
+  border-top: 1px solid var(--detail-color);
+  line-height: 30px;
+  position: absolute;
+  margin-top: 85px;
+}
+
+.country-title {
+  color: var(--detail-color);
+}
+
+.player__state {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--state-color);
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 30px;
+}
