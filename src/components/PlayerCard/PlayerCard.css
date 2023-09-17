@@ -30,7 +30,6 @@
 
 .player__name {
   font-size: 1.375rem;
-  max-width: 100px;
   text-transform: uppercase;
 }
 
