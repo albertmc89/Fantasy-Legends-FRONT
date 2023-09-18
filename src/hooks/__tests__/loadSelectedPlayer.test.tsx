@@ -2,7 +2,7 @@ import { User } from "firebase/auth";
 import auth, { AuthStateHook, IdTokenHook } from "react-firebase-hooks/auth";
 import usePlayersApi from "../usePlayersApi";
 import { renderHook } from "@testing-library/react";
-import { apiMockPlayers } from "../../mocks/playersMock";
+import { mySelectedPlayerMock, playersMock } from "../../mocks/playersMock";
 import { setupStore } from "../../store";
 import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
@@ -22,22 +22,26 @@ auth.useIdToken = vi.fn().mockReturnValue([user]);
 auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
-  const store = setupStore({ uiState: { isLoading: false } });
+  const store = setupStore({
+    playersState: { players: playersMock },
+  });
 
   return <Provider store={store}>{children}</Provider>;
 };
 
 describe("Given function loadSelectedPlayerApi from usePlayersApi custom hook", () => {
-  const idPlayer = "1";
+  const id = "64fb2a9470bf0a89283a4a88";
 
   describe("When the function is called with the id '1'", () => {
     test("Then it should load from database the selected player 'Leo Messi'", async () => {
-      const { result } = renderHook(() => usePlayersApi(), { wrapper });
+      const { result } = renderHook(() => usePlayersApi(), {
+        wrapper,
+      });
       const { loadSelectedPlayerApi } = result.current;
 
-      const selectedPlayer = await loadSelectedPlayerApi(idPlayer);
+      const selectedPlayer = await loadSelectedPlayerApi(id);
 
-      expect(selectedPlayer).toStrictEqual(apiMockPlayers[0]);
+      expect(selectedPlayer).toStrictEqual(mySelectedPlayerMock);
     });
   });
 
@@ -49,7 +53,7 @@ describe("Given function loadSelectedPlayerApi from usePlayersApi custom hook", 
       const { result } = renderHook(() => usePlayersApi(), { wrapper });
       const { loadSelectedPlayerApi } = result.current;
 
-      const selectedPlayer = loadSelectedPlayerApi(idPlayer);
+      const selectedPlayer = loadSelectedPlayerApi(id);
 
       expect(selectedPlayer).rejects.toThrowError(error);
     });

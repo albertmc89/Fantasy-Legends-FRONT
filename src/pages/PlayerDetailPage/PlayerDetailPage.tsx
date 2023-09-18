@@ -21,7 +21,7 @@ const PlayerDetailPage = (): React.ReactElement => {
   useEffect(() => {
     if (user && id) {
       (async () => {
-        const selectedPlayerApi = await loadSelectedPlayerApi(id!);
+        const selectedPlayerApi = await loadSelectedPlayerApi(id);
 
         dispatch(loadSelectedPlayerActionCreator(selectedPlayerApi));
       })();

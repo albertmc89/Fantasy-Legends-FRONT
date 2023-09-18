@@ -41,9 +41,11 @@ describe("Given a PlayersListPage page", () => {
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
       render(
-        <Provider store={store}>
-          <PlayersListPage />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlayersListPage />
+          </Provider>
+        </BrowserRouter>,
       );
 
       const heading = await screen.findByRole("heading", { name: headingText });
