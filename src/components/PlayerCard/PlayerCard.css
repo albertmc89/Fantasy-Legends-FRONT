@@ -50,6 +50,7 @@
 
 .player__data-detail {
   color: var(--secondary-color);
+  width: max-content;
 }
 
 .button--solid {
@@ -63,7 +64,7 @@
   border-radius: 10px;
   background: var(--white);
   text-transform: uppercase;
-  color: var(--button-click);
+  color: var(--state-color);
   font-weight: 700;
   border: 1px solid var(--black);
 }

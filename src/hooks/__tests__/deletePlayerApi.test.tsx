@@ -28,14 +28,18 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
 };
 
 describe("Given function deletePlayerApi from usePlayersApi custom hook", () => {
+  const id = "64fb2a9470bf0a89283a4a88";
+
   describe("When the function is called", () => {
     test("Then it should delete the player with the id from database", async () => {
       const expectedMessage = "Player succesfully deleted";
 
-      const { result } = renderHook(() => usePlayersApi(), { wrapper });
+      const { result } = renderHook(() => usePlayersApi(), {
+        wrapper,
+      });
       const { deletePlayerApi } = result.current;
 
-      const message = await deletePlayerApi(idPlayerMock);
+      const message = await deletePlayerApi(id);
 
       expect(message).toStrictEqual({ message: expectedMessage });
     });

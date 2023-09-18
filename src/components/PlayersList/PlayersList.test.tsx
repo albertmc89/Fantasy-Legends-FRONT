@@ -3,6 +3,7 @@ import { playersMock } from "../../mocks/playersMock";
 import { setupStore } from "../../store";
 import PlayersList from "./PlayersList";
 import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Given a PlayersList component", () => {
   describe("When it's rendered 'Leo Messi', 'Thierry Henry'", () => {
@@ -10,9 +11,11 @@ describe("Given a PlayersList component", () => {
       const store = setupStore({ playersState: { players: playersMock } });
 
       render(
-        <Provider store={store}>
-          <PlayersList />
-        </Provider>,
+        <BrowserRouter>
+          <Provider store={store}>
+            <PlayersList />
+          </Provider>
+        </BrowserRouter>,
       );
 
       playersMock.forEach((player) => {

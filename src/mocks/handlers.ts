@@ -1,5 +1,9 @@
 import { rest } from "msw";
-import { apiMockPlayers } from "./playersMock";
+import {
+  apiMockPlayers,
+  idPlayerMock,
+  selectedPlayerMock,
+} from "./playersMock";
 
 export const handlers = [
   rest.get(
@@ -9,7 +13,7 @@ export const handlers = [
     },
   ),
   rest.delete(
-    `${import.meta.env.VITE_API_PLAYERS_URL}players/${apiMockPlayers[0]._id}`,
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${selectedPlayerMock._id}`,
     (_req, res, ctx) => {
       return res(
         ctx.status(200),
@@ -24,9 +28,9 @@ export const handlers = [
     },
   ),
   rest.get(
-    `${import.meta.env.VITE_API_PLAYERS_URL}players/${apiMockPlayers[0]._id}`,
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${idPlayerMock}`,
     (_req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(apiMockPlayers[0]));
+      return res(ctx.status(200), ctx.json({ player: selectedPlayerMock }));
     },
   ),
 ];
@@ -39,7 +43,7 @@ export const errorHandlers = [
     },
   ),
   rest.delete(
-    `${import.meta.env.VITE_API_PLAYERS_URL}players/${apiMockPlayers[0]._id}`,
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${selectedPlayerMock._id}`,
     (_req, res, ctx) => {
       return res(ctx.status(404, "Couldn't delete player"));
     },
@@ -51,7 +55,7 @@ export const errorHandlers = [
     },
   ),
   rest.get(
-    `${import.meta.env.VITE_API_PLAYERS_URL}players/${apiMockPlayers[0]._id}`,
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${idPlayerMock}`,
     (_req, res, ctx) => {
       return res(ctx.status(404, "Couldn't load the player"));
     },

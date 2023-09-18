@@ -11,6 +11,7 @@ import paths from "../../paths/paths";
 import Header from "../Header/Header";
 import Errorpage from "../../pages/ErrorPage/ErrorPage";
 import NewPlayerPage from "../../pages/NewPlayerPage/NewPlayerPage";
+import { PlayerDetailPagePreview } from "../../pages/PlayerDetailPage/PlayerDetailPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -44,6 +45,16 @@ const App = (): React.ReactElement => {
               <ProtectedRoute>
                 <Suspense>
                   <NewPlayerPage />
+                </Suspense>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={`${paths.players}/:id`}
+            element={
+              <ProtectedRoute>
+                <Suspense>
+                  <PlayerDetailPagePreview />
                 </Suspense>
               </ProtectedRoute>
             }

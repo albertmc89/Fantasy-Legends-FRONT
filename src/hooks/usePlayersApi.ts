@@ -104,27 +104,33 @@ const usePlayersApi = () => {
   const loadSelectedPlayerApi = useCallback(
     async (id: string) => {
       try {
-        dispatch(startLoadingActionCreator());
         if (!user) {
           throw Error();
         }
 
         const token = await user.getIdToken();
+        const { data: playerDetail } = await axios.get(
+          `${apiUrl}players/${id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
 
-        const { data } = await axios.get<string>(`${apiUrl}players/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        dispatch(stopLoadingActionCreator());
+        const player = {
+          ...playerDetail.player,
+          id: playerDetail.player._id,
+        };
+        delete player._id;
 
         showFeedback("Player successfully loaded", "success");
 
-        return data;
+        return player;
       } catch (error: unknown) {
         showFeedback("Couldn't load the player", "error");
         throw new Error("Couldn't load the player");
       }
     },
-    [apiUrl, user, dispatch],
+    [apiUrl, user],
   );
 
   return { getPlayers, deletePlayerApi, addPlayerApi, loadSelectedPlayerApi };

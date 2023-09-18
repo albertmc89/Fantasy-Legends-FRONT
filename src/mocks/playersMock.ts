@@ -2,7 +2,7 @@ import { ApiPlayer, Player } from "../types";
 
 export const playersMock: Player[] = [
   {
-    id: "1",
+    id: "64fb2a9470bf0a89283a4a88",
     name: "Leo Messi",
     country: "Argentina",
     age: 36,
@@ -31,11 +31,9 @@ export const playersMock: Player[] = [
   },
 ];
 
-export const idPlayerMock = playersMock[0].id;
-
 export const apiMockPlayers: ApiPlayer[] = [
   {
-    _id: "1",
+    _id: "64fb2a9470bf0a89283a4a88",
     name: "Leo Messi",
     country: "Argentina",
     age: 36,
@@ -108,3 +106,35 @@ export const createdPlayerForm: ApiPlayer[] = [
     user: "userId",
   },
 ];
+
+export const selectedPlayerMock: ApiPlayer = {
+  _id: "64fb2a9470bf0a89283a4a88",
+  name: "Leo Messi",
+  country: "Argentina",
+  goals: 818,
+  games: 1019,
+  image:
+    "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp",
+  position: "ST",
+  isBought: true,
+  age: 36,
+  height: 169,
+  user: "userId",
+};
+
+export const idPlayerMock: string = "64fb2a9470bf0a89283a4a88";
+
+export const mySelectedPlayerMock: Player = {
+  id: "64fb2a9470bf0a89283a4a88",
+  name: "Leo Messi",
+  country: "Argentina",
+  goals: 818,
+  games: 1019,
+  image:
+    "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp",
+  position: "ST",
+  isBought: true,
+  age: 36,
+  height: 169,
+  user: "userId",
+};
