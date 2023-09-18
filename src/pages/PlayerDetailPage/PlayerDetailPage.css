@@ -1,3 +1,8 @@
+.player-page {
+  padding: 0 20px 40px;
+  background-image: var(--background-image-body);
+}
+
 .player-detail {
   display: flex;
   flex-direction: column;
@@ -11,7 +16,7 @@
 .player__detail-name {
   text-align: center;
   text-transform: uppercase;
-  padding: 20px;
+  padding: 33px 0 38px;
 }
 
 .player__stats {
@@ -20,7 +25,7 @@
   justify-items: center;
   align-items: center;
   gap: 38px;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .player__stats-country,
@@ -37,6 +42,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: var(--detail-color);
 }
 
 .stat-detail {
@@ -46,7 +52,7 @@
   color: var(--detail-color);
 }
 
-.title-container {
+.heading-container {
   border-top: 1px solid var(--detail-color);
   line-height: 30px;
   position: absolute;

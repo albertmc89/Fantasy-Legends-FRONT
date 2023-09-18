@@ -250,4 +250,40 @@ describe("Given a App component", () => {
       });
     });
   });
+
+  describe("When the user clicks on view stats link", () => {
+    test("Then it should navigate to detail page and show 'Player stats' inside a heading", async () => {
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
+
+      const store = setupStore({ playersState: { players: playersMock } });
+      const path = "/players";
+      const pathDetail = "/players/64fb2a9470bf0a89283a4a88";
+      const linkText = "View stats";
+      const playerText = "Leo Messi";
+
+      render(
+        <MemoryRouter initialEntries={[path, pathDetail]} initialIndex={0}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const detailLink = await screen.findAllByRole("link", {
+        name: linkText,
+      });
+
+      await userEvent.click(detailLink[0]);
+
+      const heading = await screen.findByRole("heading", {
+        name: playerText,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
 });

@@ -1,9 +1,11 @@
+import { NavLink } from "react-router-dom";
 import usePlayersApi from "../../hooks/usePlayersApi";
 import { useAppDispatch } from "../../store";
 import { deletePlayerActionCreator } from "../../store/players/playersSlice";
 import { Player } from "../../types";
 import Button from "../Button/Button";
 import "./PlayerCard.css";
+import paths from "../../paths/paths";
 
 interface PlayerCardProps {
   player: Partial<Player>;
@@ -33,7 +35,7 @@ const PlayerCard = ({
             className="button--circle"
           >
             <img
-              src="./img/DeleteForever.svg"
+              src="/img/DeleteForever.svg"
               aria-label="delete logo vector"
               className="delete-logo"
               width={30}
@@ -68,11 +70,12 @@ const PlayerCard = ({
             text={isBought ? "bought" : "sold"}
             actionOnClick={() => {}}
           />
-          <Button
+          <NavLink
             className="button button--solid"
-            text="View stats"
-            actionOnClick={() => {}}
-          />
+            to={`${paths.players}/${id}`}
+          >
+            View stats
+          </NavLink>
         </div>
       </div>
     </article>
