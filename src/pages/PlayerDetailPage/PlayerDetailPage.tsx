@@ -37,46 +37,46 @@ const PlayerDetailPage = (): React.ReactElement => {
           alt={`Moment of a fooball game in which ${selectedPlayer?.name} plays with his team`}
         />
         <h2 className="player__detail-name">{selectedPlayer?.name}</h2>
-        <div className="player__stats">
-          <div className="player__stats-country">
+        <ul className="player__stats">
+          <li className="player__stats-country">
             <span className="stat-detail">
               {selectedPlayer?.country!.slice(0, 3)}
             </span>
             <div className="heading-container">
               <span className="country-title">Country</span>
             </div>
-          </div>
-          <div className="player__stats-age">
+          </li>
+          <li className="player__stats-age">
             <span className="stat-detail">{selectedPlayer?.age}</span>
             <div className="heading-container">
               <span className="age-title">Age</span>
             </div>
-          </div>
-          <div className="player__stats-height">
+          </li>
+          <li className="player__stats-height">
             <span className="stat-detail">{selectedPlayer?.height}</span>
             <div className="heading-container">
               <span className="height-title">Height</span>
             </div>
-          </div>
-          <div className="player__stats-goals">
+          </li>
+          <li className="player__stats-goals">
             <span className="stat-detail">{selectedPlayer?.goals}</span>
             <div className="heading-container">
               <span className="goals-title">Goals</span>
             </div>
-          </div>
-          <div className="player__stats-position">
+          </li>
+          <li className="player__stats-position">
             <span className="stat-detail">{selectedPlayer?.position}</span>
             <div className="heading-container">
               <span className="position-title">Position</span>
             </div>
-          </div>
-          <div className="player__stats-games">
+          </li>
+          <li className="player__stats-games">
             <span className="stat-detail">{selectedPlayer?.games}</span>
             <div className="heading-container">
               <span className="games-title">Games</span>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
         <span className="player__state">
           {selectedPlayer?.isBought ? "bought" : "sold"}
         </span>

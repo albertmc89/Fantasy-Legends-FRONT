@@ -122,8 +122,6 @@ const usePlayersApi = () => {
         };
         delete player._id;
 
-        showFeedback("Player successfully loaded", "success");
-
         return player;
       } catch (error: unknown) {
         showFeedback("Couldn't load the player", "error");
