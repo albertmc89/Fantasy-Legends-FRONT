@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import usePlayersApi from "../../hooks/usePlayersApi";
 import { useAppDispatch } from "../../store";
-import { deletePlayerActionCreator } from "../../store/players/playersSlice";
+import {
+  deletePlayerActionCreator,
+  togglePlayerActionCreator,
+} from "../../store/players/playersSlice";
 import { Player } from "../../types";
 import Button from "../Button/Button";
 import "./PlayerCard.css";
@@ -23,6 +26,10 @@ const PlayerCard = ({
     await deletePlayerApi(id!);
 
     dispatch(deletePlayerActionCreator(id!));
+  };
+
+  const togglePlayer = () => {
+    dispatch(togglePlayerActionCreator(id!));
   };
 
   return (
@@ -68,7 +75,7 @@ const PlayerCard = ({
           <Button
             className={isBought ? "bought" : "sold"}
             text={isBought ? "bought" : "sold"}
-            actionOnClick={() => {}}
+            actionOnClick={togglePlayer}
           />
           <NavLink
             className="button button--solid"
