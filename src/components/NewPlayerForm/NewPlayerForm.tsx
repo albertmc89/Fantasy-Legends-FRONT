@@ -37,7 +37,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
 
   return (
     <form className="form" onSubmit={submitForm}>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="name" className="form__label">
           Name:
         </label>
@@ -50,7 +50,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           required
         />
       </div>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="age" className="form__label">
           Age:
         </label>
@@ -65,7 +65,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           required
         />
       </div>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="country" className="form__label">
           Country:
         </label>
@@ -378,7 +378,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           <option value="Zimbabwe">Zimbabwe</option>
         </select>
       </div>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="height" className="form__label">
           Height(cm):
         </label>
@@ -392,7 +392,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           required
         />
       </div>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="goals" className="form__label">
           Goals:
         </label>
@@ -406,7 +406,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           required
         />
       </div>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="games" className="form__label">
           Games:
         </label>
@@ -420,7 +420,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           required
         />
       </div>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="position" className="form__label">
           Position:
         </label>
@@ -437,7 +437,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           <option value="ST">ST</option>
         </select>
       </div>
-      <div className="from-control">
+      <div className="form-control">
         <label htmlFor="image" className="form__label">
           Image:
         </label>
