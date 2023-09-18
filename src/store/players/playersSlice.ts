@@ -39,6 +39,16 @@ const playersSlice = createSlice({
       ...currentPlayersState,
       selectedPlayer: action.payload,
     }),
+    togglePlayer: (
+      currentPlayersState,
+      action: PayloadAction<string>,
+    ): PlayerState => ({
+      players: currentPlayersState.players.map((player) =>
+        player.id === action.payload
+          ? { ...player, isBought: !player.isBought }
+          : { ...player },
+      ),
+    }),
   },
 });
 
@@ -48,4 +58,5 @@ export const {
   deletePlayer: deletePlayerActionCreator,
   addPlayer: addPlayerActionCreator,
   loadSelectedPlayer: loadSelectedPlayerActionCreator,
+  togglePlayer: togglePlayerActionCreator,
 } = playersSlice.actions;

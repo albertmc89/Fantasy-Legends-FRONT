@@ -286,4 +286,33 @@ describe("Given a App component", () => {
       expect(heading).toBeInTheDocument();
     });
   });
+
+  describe("When the user clicks on button with text 'bought'", () => {
+    test("Then it should toggle to 'sold'", async () => {
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const useIdTokenHookMock: Partial<IdTokenHook> = [user as User];
+      auth.useIdToken = vi.fn().mockReturnValue(useIdTokenHookMock);
+
+      const store = setupStore({ playersState: { players: playersMock } });
+      const buttonText = "bought";
+
+      render(
+        <BrowserRouter>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </BrowserRouter>,
+      );
+
+      const toggle = await screen.findByRole("button", {
+        name: buttonText,
+      });
+
+      await userEvent.click(toggle);
+
+      expect(toggle).toBeInTheDocument();
+    });
+  });
 });

@@ -33,7 +33,6 @@
 .login-container__image {
   width: 32.5px;
   height: 35px;
-  aspect-ratio: 1;
 }
 
 .login-container__title-container {
