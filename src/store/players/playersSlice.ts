@@ -43,9 +43,10 @@ const playersSlice = createSlice({
       currentPlayersState,
       action: PayloadAction<Player>,
     ): PlayerState => ({
+      ...currentPlayersState,
       selectedPlayer: action.payload,
       players: currentPlayersState.players.map((player) =>
-        player.id === action.payload.id ? { ...action.payload } : { ...player },
+        player.id === action.payload.id ? action.payload : player,
       ),
     }),
   },

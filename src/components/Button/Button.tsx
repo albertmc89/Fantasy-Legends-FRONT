@@ -4,7 +4,7 @@ import "./Button.css";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   actionOnClick?: () => void;
-  text: string;
+  text?: string;
 }
 
 const Button = ({
