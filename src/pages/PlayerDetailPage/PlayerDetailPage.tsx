@@ -26,8 +26,6 @@ const PlayerDetailPage = (): React.ReactElement => {
         dispatch(loadSelectedPlayerActionCreator(selectedPlayerApi));
 
         document.title = `${selectedPlayer?.name} detail`;
-
-        window.scrollTo(0, 0);
       }
     })();
   }, [dispatch, loadSelectedPlayerApi, user, id, selectedPlayer?.name]);

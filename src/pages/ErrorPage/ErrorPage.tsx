@@ -7,7 +7,7 @@ export const ErrorPagePreview = lazy(() => import("./ErrorPage"));
 
 const ErrorPage = () => {
   useEffect(() => {
-    document.title = "Page not found";
+    document.title = "Fantasy Legends | Page not found";
   }, []);
 
   return (

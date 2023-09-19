@@ -22,7 +22,7 @@ const PlayersListPage = (): React.ReactElement => {
   const hasPlayers = players.length === 0;
 
   useEffect(() => {
-    document.title = "Players";
+    document.title = "Fantasy Legends | Players";
 
     if (user) {
       (async () => {
