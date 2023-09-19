@@ -9,19 +9,16 @@ describe("Given a players slice", () => {
         players: playersMock,
       };
 
-      const idToToggle = "64fb2a9470bf0a89283a4a88";
-
-      const toggleIsBoughtAction = togglePlayerActionCreator(idToToggle);
+      const toggleIsBoughtAction = togglePlayerActionCreator({
+        ...playersMock[0],
+        isBought: true,
+      });
       const newPlayersState = playersReducer(
         currentPlayersState,
         toggleIsBoughtAction,
       );
 
-      const toggledPlayer = newPlayersState.players.find(
-        (players) => players.id === idToToggle,
-      );
-
-      expect(toggledPlayer).toHaveProperty("isBought", false);
+      expect(newPlayersState.players[0]).toHaveProperty("isBought", true);
     });
   });
 });

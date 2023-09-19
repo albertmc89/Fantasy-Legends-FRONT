@@ -20,7 +20,7 @@ const PlayerCard = ({
   playerPosition,
 }: PlayerCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
-  const { deletePlayerApi } = usePlayersApi();
+  const { deletePlayerApi, modifyPlayerApi } = usePlayersApi();
 
   const deletePlayer = async () => {
     await deletePlayerApi(id!);
@@ -28,8 +28,10 @@ const PlayerCard = ({
     dispatch(deletePlayerActionCreator(id!));
   };
 
-  const togglePlayer = () => {
-    dispatch(togglePlayerActionCreator(id!));
+  const togglePlayer = async () => {
+    const toggledPlayer = await modifyPlayerApi(id!, isBought!);
+
+    dispatch(togglePlayerActionCreator(toggledPlayer));
   };
 
   return (
