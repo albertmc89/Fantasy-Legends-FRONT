@@ -9,6 +9,10 @@ import { Player } from "../../types";
 import Button from "../Button/Button";
 import "./PlayerCard.css";
 import paths from "../../paths/paths";
+import {
+  startLoadingActionCreator,
+  stopLoadingActionCreator,
+} from "../../store/ui/uiSlice";
 
 interface PlayerCardProps {
   player: Partial<Player>;
@@ -29,8 +33,11 @@ const PlayerCard = ({
   };
 
   const togglePlayer = async () => {
+    dispatch(startLoadingActionCreator());
+
     const toggledPlayer = await modifyPlayerApi(id!, isBought!);
 
+    dispatch(stopLoadingActionCreator());
     dispatch(togglePlayerActionCreator(toggledPlayer));
   };
 

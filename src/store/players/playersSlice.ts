@@ -30,6 +30,7 @@ const playersSlice = createSlice({
       currentPlayersState,
       action: PayloadAction<Player>,
     ): PlayerState => ({
+      ...currentPlayersState,
       players: [...currentPlayersState.players, action.payload],
     }),
     loadSelectedPlayer: (

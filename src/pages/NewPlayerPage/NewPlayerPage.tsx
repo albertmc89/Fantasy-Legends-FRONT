@@ -14,7 +14,7 @@ const NewPlayerPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.title = "Add a new player";
+    document.title = "Fantasy Legends | Add a new player";
   }, []);
 
   const onSubmitPlayer = async (newplayer: Omit<Player, "id" | "user">) => {
