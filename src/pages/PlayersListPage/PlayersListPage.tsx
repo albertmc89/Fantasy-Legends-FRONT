@@ -22,6 +22,8 @@ const PlayersListPage = (): React.ReactElement => {
   const hasPlayers = players.length === 0;
 
   useEffect(() => {
+    document.title = "Players";
+
     if (user) {
       (async () => {
         const players = await getPlayers();

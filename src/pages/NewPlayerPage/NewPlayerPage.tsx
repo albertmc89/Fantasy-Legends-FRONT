@@ -6,11 +6,16 @@ import usePlayersApi from "../../hooks/usePlayersApi";
 import "./NewPlayerPage.css";
 import { useNavigate } from "react-router-dom";
 import paths from "../../paths/paths";
+import { useEffect } from "react";
 
 const NewPlayerPage = () => {
   const dispatch = useAppDispatch();
   const { addPlayerApi } = usePlayersApi();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Add a new player";
+  }, []);
 
   const onSubmitPlayer = async (newplayer: Omit<Player, "id" | "user">) => {
     const player = await addPlayerApi(newplayer);
