@@ -41,12 +41,11 @@ const playersSlice = createSlice({
     }),
     togglePlayer: (
       currentPlayersState,
-      action: PayloadAction<string>,
+      action: PayloadAction<Player>,
     ): PlayerState => ({
+      selectedPlayer: action.payload,
       players: currentPlayersState.players.map((player) =>
-        player.id === action.payload
-          ? { ...player, isBought: !player.isBought }
-          : { ...player },
+        player.id === action.payload.id ? { ...action.payload } : { ...player },
       ),
     }),
   },

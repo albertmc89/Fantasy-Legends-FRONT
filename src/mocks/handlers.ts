@@ -33,6 +33,12 @@ export const handlers = [
       return res(ctx.status(200), ctx.json({ player: selectedPlayerMock }));
     },
   ),
+  rest.patch(
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${idPlayerMock}`,
+    (_req, res, ctx) => {
+      return res(ctx.status(200), ctx.json({ player: selectedPlayerMock }));
+    },
+  ),
 ];
 
 export const errorHandlers = [
@@ -58,6 +64,12 @@ export const errorHandlers = [
     `${import.meta.env.VITE_API_PLAYERS_URL}players/${idPlayerMock}`,
     (_req, res, ctx) => {
       return res(ctx.status(404, "Couldn't load the player"));
+    },
+  ),
+  rest.patch(
+    `${import.meta.env.VITE_API_PLAYERS_URL}players/${idPlayerMock}`,
+    (_req, res, ctx) => {
+      return res(ctx.status(500, "Couldn't modify the player"));
     },
   ),
 ];

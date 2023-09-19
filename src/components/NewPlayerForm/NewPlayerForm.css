@@ -6,7 +6,7 @@
   border-radius: 5px;
 }
 
-.from-control {
+.form-control {
   display: flex;
   flex-direction: column;
   gap: 5px;

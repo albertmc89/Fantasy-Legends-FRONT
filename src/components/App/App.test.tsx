@@ -289,6 +289,9 @@ describe("Given a App component", () => {
 
   describe("When the user clicks on button with text 'bought'", () => {
     test("Then it should toggle to 'sold'", async () => {
+      const path = "/players";
+      const pathDetail = "/players/64fb2a9470bf0a89283a4a88";
+
       const authStateHookMock: Partial<AuthStateHook> = [user as User];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
@@ -297,22 +300,27 @@ describe("Given a App component", () => {
 
       const store = setupStore({ playersState: { players: playersMock } });
       const buttonText = "bought";
+      const toggledButtonText = "sold";
 
       render(
-        <BrowserRouter>
+        <MemoryRouter initialEntries={[path, pathDetail]} initialIndex={0}>
           <Provider store={store}>
             <App />
           </Provider>
-        </BrowserRouter>,
+        </MemoryRouter>,
       );
 
-      const toggle = await screen.findByRole("button", {
+      const buttonToToggle = await screen.findAllByRole("button", {
         name: buttonText,
       });
 
-      await userEvent.click(toggle);
+      await userEvent.click(buttonToToggle[0]);
 
-      expect(toggle).toBeInTheDocument();
+      const buttonToggled = await screen.findAllByRole("button", {
+        name: toggledButtonText,
+      });
+
+      expect(buttonToggled[0]).toBeInTheDocument();
     });
   });
 });

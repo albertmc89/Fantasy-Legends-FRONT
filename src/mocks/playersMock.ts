@@ -112,7 +112,7 @@ export const selectedPlayerMock: ApiPlayer = {
   name: "Leo Messi",
   country: "Argentina",
   goals: 818,
-  games: 1019,
+  games: 1038,
   image:
     "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp",
   position: "ST",
@@ -129,7 +129,7 @@ export const mySelectedPlayerMock: Player = {
   name: "Leo Messi",
   country: "Argentina",
   goals: 818,
-  games: 1019,
+  games: 1038,
   image:
     "https://cdn.discordapp.com/attachments/1149732795334266962/1149735198225858581/Lionel-Messi.webp",
   position: "ST",
