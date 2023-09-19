@@ -12,6 +12,7 @@ import Header from "../Header/Header";
 import Errorpage from "../../pages/ErrorPage/ErrorPage";
 import NewPlayerPage from "../../pages/NewPlayerPage/NewPlayerPage";
 import { PlayerDetailPagePreview } from "../../pages/PlayerDetailPage/PlayerDetailPage";
+import Footer from "../Footer/Footer";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -71,6 +72,7 @@ const App = (): React.ReactElement => {
         </Routes>
         <ToastContainer />
       </main>
+      <Footer />
     </>
   );
 };
