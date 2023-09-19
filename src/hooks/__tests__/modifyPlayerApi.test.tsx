@@ -4,7 +4,7 @@ import { User } from "firebase/auth";
 import { Provider } from "react-redux";
 import { setupStore } from "../../store";
 import { PropsWithChildren } from "react";
-import { idPlayerMock, selectedPlayerMock } from "../../mocks/playersMock";
+import { idPlayerMock, mySelectedPlayerMock } from "../../mocks/playersMock";
 import usePlayersApi from "../usePlayersApi";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
@@ -35,7 +35,7 @@ describe("Given function modifyPlayerApi from usePlayersApi custom hook", () => 
     test("Then you will recieve a list of players", async () => {
       const players = await modifyPlayerApi(idPlayerMock, false);
 
-      expect(players).toStrictEqual({ player: selectedPlayerMock });
+      expect(players).toStrictEqual(mySelectedPlayerMock);
     });
 
     test("Then it should throw an error 'Could not modify the destination'", () => {

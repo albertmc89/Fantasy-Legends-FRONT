@@ -140,7 +140,7 @@ const usePlayersApi = () => {
 
         const token = await user.getIdToken();
 
-        const { data } = await axios.patch(
+        const { data: playerDetail } = await axios.patch(
           `${apiUrl}players/${id}`,
           { isBought },
           {
@@ -148,7 +148,13 @@ const usePlayersApi = () => {
           },
         );
 
-        return data;
+        const player = {
+          ...playerDetail.player,
+          id: playerDetail.player._id,
+        };
+        delete player._id;
+
+        return player;
       } catch (error: unknown) {
         showFeedback("Couldn't modify player", "error");
         throw new Error("Couldn't modify the player");
