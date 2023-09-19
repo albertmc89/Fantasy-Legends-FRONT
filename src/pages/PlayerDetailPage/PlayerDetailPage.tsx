@@ -24,6 +24,8 @@ const PlayerDetailPage = (): React.ReactElement => {
         const selectedPlayerApi = await loadSelectedPlayerApi(id);
 
         dispatch(loadSelectedPlayerActionCreator(selectedPlayerApi));
+
+        document.title = "Player detail";
       })();
     }
   }, [dispatch, loadSelectedPlayerApi, user, id]);
@@ -38,7 +40,7 @@ const PlayerDetailPage = (): React.ReactElement => {
         />
         <h2 className="player__detail-name">{selectedPlayer?.name}</h2>
         <ul className="player__stats">
-          <li className="player__stats-country">
+          <li className="player__stats-content">
             <span className="stat-detail">
               {selectedPlayer?.country!.slice(0, 3)}
             </span>
@@ -46,31 +48,31 @@ const PlayerDetailPage = (): React.ReactElement => {
               <span className="country-title">Country</span>
             </div>
           </li>
-          <li className="player__stats-age">
+          <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.age}</span>
             <div className="heading-container">
               <span className="age-title">Age</span>
             </div>
           </li>
-          <li className="player__stats-height">
+          <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.height}</span>
             <div className="heading-container">
               <span className="height-title">Height</span>
             </div>
           </li>
-          <li className="player__stats-goals">
+          <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.goals}</span>
             <div className="heading-container">
               <span className="goals-title">Goals</span>
             </div>
           </li>
-          <li className="player__stats-position">
+          <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.position}</span>
             <div className="heading-container">
               <span className="position-title">Position</span>
             </div>
           </li>
-          <li className="player__stats-games">
+          <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.games}</span>
             <div className="heading-container">
               <span className="games-title">Games</span>

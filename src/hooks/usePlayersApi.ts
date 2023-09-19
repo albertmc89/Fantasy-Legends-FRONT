@@ -131,7 +131,39 @@ const usePlayersApi = () => {
     [apiUrl, user],
   );
 
-  return { getPlayers, deletePlayerApi, addPlayerApi, loadSelectedPlayerApi };
+  const modifyPlayerApi = useCallback(
+    async (id: string, isBought: boolean) => {
+      try {
+        if (!user) {
+          throw Error();
+        }
+
+        const token = await user.getIdToken();
+
+        const { data } = await axios.patch(
+          `${apiUrl}players/${id}`,
+          { isBought },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        return data;
+      } catch (error: unknown) {
+        showFeedback("Couldn't modify player", "error");
+        throw new Error("Couldn't modify the player");
+      }
+    },
+    [apiUrl, user],
+  );
+
+  return {
+    getPlayers,
+    deletePlayerApi,
+    addPlayerApi,
+    loadSelectedPlayerApi,
+    modifyPlayerApi,
+  };
 };
 
 export default usePlayersApi;
