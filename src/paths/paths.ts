@@ -5,7 +5,7 @@ const paths: PathsStructure = {
   homepage: "/home",
   players: "/players",
   error: "/*",
-  addplayer: "/addplayer",
+  addplayer: "/add-player",
   detailpage: "/players/detail",
 };
 

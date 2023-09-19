@@ -19,16 +19,19 @@ const PlayerDetailPage = (): React.ReactElement => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (user && id) {
-      (async () => {
+    (async () => {
+      if (user && id) {
         const selectedPlayerApi = await loadSelectedPlayerApi(id);
 
         dispatch(loadSelectedPlayerActionCreator(selectedPlayerApi));
 
-        document.title = "Player detail";
-      })();
-    }
-  }, [dispatch, loadSelectedPlayerApi, user, id]);
+        document.title = `${selectedPlayer?.name} detail`;
+
+        window.scrollTo(0, 0);
+      }
+    })();
+  }, [dispatch, loadSelectedPlayerApi, user, id, selectedPlayer?.name]);
+
   return (
     <div className="player-page">
       <h2 className="title">Player stats</h2>

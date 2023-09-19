@@ -1,11 +1,15 @@
 import "./ErrorPage.css";
 import paths from "../../paths/paths";
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 export const ErrorPagePreview = lazy(() => import("./ErrorPage"));
 
 const ErrorPage = () => {
+  useEffect(() => {
+    document.title = "Page not found";
+  }, []);
+
   return (
     <div className="error-container">
       <article className="error">
