@@ -9,10 +9,13 @@ import {
   stopLoadingActionCreator,
 } from "../store/ui/uiSlice";
 import { showFeedback } from "../components/FeedBack/showFeedBack";
+import paths from "../paths/paths";
+import { useNavigate } from "react-router-dom";
 
 const usePlayersApi = () => {
   const [user] = useIdToken(auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const apiUrl = import.meta.env.VITE_API_PLAYERS_URL;
 
@@ -125,10 +128,11 @@ const usePlayersApi = () => {
         return player;
       } catch (error: unknown) {
         showFeedback("Couldn't load the player", "error");
+        navigate(paths.players);
         throw new Error("Couldn't load the player");
       }
     },
-    [apiUrl, user],
+    [apiUrl, user, navigate],
   );
 
   const modifyPlayerApi = useCallback(

@@ -20,6 +20,7 @@
   text-align: center;
   text-transform: uppercase;
   padding: 33px 0 38px;
+  padding: 20px;
 }
 
 .player__stats {
@@ -61,11 +62,21 @@
   color: var(--detail-color);
 }
 
-.player__state {
+.isbought {
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--state-color);
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 30px;
+}
+
+.issold {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--terciary-color);
   display: flex;
   justify-content: center;
   padding: 40px 0 30px;
