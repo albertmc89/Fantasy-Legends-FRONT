@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 13px;
 }
 
 .button--solid-red {
@@ -12,4 +11,9 @@
   height: 45px;
   background-color: var(--terciary-color);
   color: var(--white);
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
 }
