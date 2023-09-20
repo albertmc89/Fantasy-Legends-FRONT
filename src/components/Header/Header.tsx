@@ -13,10 +13,9 @@ const Header = (): React.ReactElement => {
     <header className="header">
       <div className="title-container">
         <img
+          className="logo"
           src="/img/logo.webp"
           alt="logo ball with blue and yellor colors"
-          width={32}
-          height={32}
         />
       </div>
       <Navigation />
