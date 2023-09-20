@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { auth, gitHubProvider } from "../../firebase";
-import { signInWithPopup } from "firebase/auth";
+import { browserPopupRedirectResolver, signInWithPopup } from "firebase/auth";
 import paths from "../../paths/paths";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { lazy } from "react";
@@ -17,7 +17,7 @@ const Homepage = () => {
   }
 
   const login = async () => {
-    await signInWithPopup(auth, gitHubProvider);
+    await signInWithPopup(auth, gitHubProvider, browserPopupRedirectResolver);
   };
 
   return (
