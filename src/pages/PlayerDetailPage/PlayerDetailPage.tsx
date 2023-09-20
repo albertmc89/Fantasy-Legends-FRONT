@@ -11,11 +11,12 @@ export const PlayerDetailPagePreview = lazy(() => import("./PlayerDetailPage"));
 
 const PlayerDetailPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
-  const { loadSelectedPlayerApi } = usePlayersApi();
-  const [user] = useAuthState(auth);
   const selectedPlayer = useAppSelector(
     (state) => state.playersState.selectedPlayer,
   );
+  const { loadSelectedPlayerApi } = usePlayersApi();
+  const [user] = useAuthState(auth);
+
   const { id } = useParams();
 
   useEffect(() => {
