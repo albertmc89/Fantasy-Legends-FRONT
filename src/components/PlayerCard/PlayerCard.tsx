@@ -20,7 +20,7 @@ interface PlayerCardProps {
 }
 
 const PlayerCard = ({
-  player: { name, age, country, image, isBought, id },
+  player: { name, position, country, image, isBought, id },
   playerPosition,
 }: PlayerCardProps): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -76,7 +76,7 @@ const PlayerCard = ({
             </li>
             <li className="player__data">
               <span className="player__data-label"></span>
-              {age}yrs
+              {position}
             </li>
           </ul>
         </div>

@@ -8,6 +8,7 @@ import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
+import { BrowserRouter } from "react-router-dom";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -24,7 +25,11 @@ auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({ uiState: { isLoading: false } });
 
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
 };
 
 describe("Given function deletePlayerApi from usePlayersApi custom hook", () => {
