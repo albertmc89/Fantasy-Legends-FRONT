@@ -13,8 +13,12 @@
   gap: 11px;
 }
 
-.navigation-link.active {
+.navigation-list__active.active {
   border-bottom: 1px solid var(--white);
+}
+
+.navigation-list__inactive {
+  border: none;
 }
 
 .navigation__add {

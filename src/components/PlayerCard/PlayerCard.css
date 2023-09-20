@@ -41,6 +41,10 @@
   font-size: 18px;
 }
 
+.player__data {
+  font-weight: 700;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;

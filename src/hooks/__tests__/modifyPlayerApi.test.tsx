@@ -8,6 +8,7 @@ import { idPlayerMock, mySelectedPlayerMock } from "../../mocks/playersMock";
 import usePlayersApi from "../usePlayersApi";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { BrowserRouter } from "react-router-dom";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -24,7 +25,11 @@ auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
   const store = setupStore({ uiState: { isLoading: false } });
 
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
 };
 
 describe("Given function modifyPlayerApi from usePlayersApi custom hook", () => {

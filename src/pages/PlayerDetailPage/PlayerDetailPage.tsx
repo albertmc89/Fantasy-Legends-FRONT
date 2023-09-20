@@ -25,7 +25,7 @@ const PlayerDetailPage = (): React.ReactElement => {
 
         dispatch(loadSelectedPlayerActionCreator(selectedPlayerApi));
 
-        document.title = `${selectedPlayer?.name} detail`;
+        document.title = `Fantasy Legends | ${selectedPlayer?.name} detail`;
       }
     })();
   }, [dispatch, loadSelectedPlayerApi, user, id, selectedPlayer?.name]);
@@ -80,7 +80,7 @@ const PlayerDetailPage = (): React.ReactElement => {
             </div>
           </li>
         </ul>
-        <span className="player__state">
+        <span className={selectedPlayer?.isBought ? "isbought" : "issold"}>
           {selectedPlayer?.isBought ? "bought" : "sold"}
         </span>
       </article>

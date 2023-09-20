@@ -8,6 +8,7 @@ import { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
+import { BrowserRouter } from "react-router-dom";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -26,7 +27,11 @@ const wrapper = ({ children }: PropsWithChildren): React.ReactElement => {
     playersState: { players: playersMock },
   });
 
-  return <Provider store={store}>{children}</Provider>;
+  return (
+    <BrowserRouter>
+      <Provider store={store}>{children}</Provider>
+    </BrowserRouter>
+  );
 };
 
 describe("Given function loadSelectedPlayerApi from usePlayersApi custom hook", () => {
