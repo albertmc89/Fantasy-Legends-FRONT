@@ -4,3 +4,11 @@
   align-items: center;
   gap: 40px;
 }
+
+@media (min-width: 768px) {
+  .players-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
