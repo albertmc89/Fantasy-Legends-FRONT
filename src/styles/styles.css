@@ -12,6 +12,7 @@
   --background-opacity: rgb(0, 0, 0, 0.8);
   --background-image: url(/public/img/background-login.webp);
   --background-image-body: url(/public/img/Rectangle1.webp);
+  --background-galaxy: url(/public/img/background-galaxy.avif);
 }
 
 *,
