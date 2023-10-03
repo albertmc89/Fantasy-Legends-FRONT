@@ -47,37 +47,37 @@ const PlayerDetailPage = (): React.ReactElement => {
               {selectedPlayer?.country!.slice(0, 3)}
             </span>
             <div className="heading-container">
-              <span className="country-title">Country</span>
+              <span className="content-title">Country</span>
             </div>
           </li>
           <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.age}</span>
             <div className="heading-container">
-              <span className="age-title">Age</span>
+              <span className="content-title">Age</span>
             </div>
           </li>
           <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.height}</span>
             <div className="heading-container">
-              <span className="height-title">Height</span>
+              <span className="content-title">Height</span>
             </div>
           </li>
           <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.goals}</span>
             <div className="heading-container">
-              <span className="goals-title">Goals</span>
+              <span className="content-title">Goals</span>
             </div>
           </li>
           <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.position}</span>
             <div className="heading-container">
-              <span className="position-title">Position</span>
+              <span className="content-title">Position</span>
             </div>
           </li>
           <li className="player__stats-content">
             <span className="stat-detail">{selectedPlayer?.games}</span>
             <div className="heading-container">
-              <span className="games-title">Games</span>
+              <span className="content-title">Games</span>
             </div>
           </li>
         </ul>

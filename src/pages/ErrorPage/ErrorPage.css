@@ -6,6 +6,7 @@
 .error__number {
   font-size: 6rem;
   font-weight: 700;
+  color: var(--white);
 }
 
 .error__title {
@@ -21,12 +22,17 @@
   gap: 50px;
   align-items: center;
   justify-content: center;
-  min-height: 78.4vh;
+  min-height: 73vh;
+  background: linear-gradient(
+    70deg,
+    rgba(1, 1, 24, 1) 65%,
+    rgba(0, 0, 10, 1) 100%
+  );
 }
 
 .button--solid {
   color: var(--white);
-  background: var(--primary-color);
+  background: var(--detail-color);
   display: flex;
   align-items: center;
   justify-content: center;

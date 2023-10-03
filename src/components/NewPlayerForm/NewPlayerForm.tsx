@@ -400,6 +400,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           type="number"
           id="goals"
           min="0"
+          max="9999"
           value={newPlayer.goals === 0 ? "" : newPlayer.goals}
           className="form__input"
           onChange={changeNewPlayer}
@@ -414,6 +415,7 @@ const NewPlayerForm = ({ onSubmitPlayer }: NewFormProps) => {
           type="number"
           id="games"
           min="0"
+          max="9999"
           value={newPlayer.games === 0 ? "" : newPlayer.games}
           className="form__input"
           onChange={changeNewPlayer}

@@ -1,9 +1,16 @@
 .header {
   padding: 9px 20px;
-  background-color: var(--primary-color);
+  background: linear-gradient(
+    70deg,
+    rgba(1, 1, 24, 1) 65%,
+    rgba(0, 0, 10, 1) 100%
+  );
+  border-bottom: 0.5px dotted var(--white);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
+  gap: 7px;
 }
 
 .button--solid-red {
@@ -14,6 +21,6 @@
 }
 
 .logo {
-  width: 35px;
-  height: 35px;
+  width: 60px;
+  height: 60px;
 }
