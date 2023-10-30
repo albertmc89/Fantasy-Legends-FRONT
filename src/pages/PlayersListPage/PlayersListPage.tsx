@@ -44,7 +44,7 @@ const PlayersListPage = (): React.ReactElement => {
                 THERE IS NO PLAYERS ON THE LIST, CLICK ADD TO START ADDING
                 PLAYERS
               </span>
-              <NavLink to={paths.homepage} className="button button--solid">
+              <NavLink to={paths.addplayer} className="button button--solid">
                 Add
               </NavLink>
             </div>

@@ -6,6 +6,11 @@
   border-radius: 5px;
 }
 
+.form__label {
+  color: var(--white);
+  padding-bottom: 5px;
+}
+
 .form-control {
   display: flex;
   flex-direction: column;

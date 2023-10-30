@@ -14,7 +14,8 @@
 }
 
 .navigation-list__active.active {
-  border-bottom: 2px dotted var(--white);
+  color: rgba(189, 196, 32, 0.99);
+  font-weight: 700;
 }
 
 .navigation-list__inactive {
