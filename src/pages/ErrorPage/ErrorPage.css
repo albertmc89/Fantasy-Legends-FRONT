@@ -22,7 +22,7 @@
   gap: 50px;
   align-items: center;
   justify-content: center;
-  min-height: 73vh;
+  min-height: 100vh;
   background: linear-gradient(
     70deg,
     rgba(1, 1, 24, 1) 65%,
