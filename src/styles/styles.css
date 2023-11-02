@@ -9,7 +9,7 @@
   --white: #fff;
   --black: #000;
   --primary-font: "Mulish", sans-serif;
-  --background-opacity: rgb(0, 0, 0, 0.8);
+  --background-opacity: rgb(0, 0, 0, 0.4);
   --background-image: url(/public/img/background-login.webp);
   --background-image-body: url(/public/img/Rectangle1.webp);
 }
