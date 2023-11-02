@@ -73,9 +73,9 @@ const Homepage = (): React.ReactElement => {
         </div>
         <div className="login-container__title-container">
           <div className="divider">
-            <span className="divider-line"></span>
+            <div className="divider-line"></div>
             Or
-            <span className="divider-line"></span>
+            <div className="divider-line"></div>
           </div>
           <Button
             className="button--large"

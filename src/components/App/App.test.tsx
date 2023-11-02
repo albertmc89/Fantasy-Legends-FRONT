@@ -32,8 +32,8 @@ auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
 describe("Given a App component", () => {
   describe("When the user is not logged in", () => {
-    test("Then it should show 'Welcome' inside a heading", async () => {
-      const headingText = "Welcome";
+    test("Then it should show 'Create your account 🤙' inside a heading", async () => {
+      const headingText = "Create your account 🤙";
 
       const authStateHookMock: Partial<AuthStateHook> = [undefined];
 
@@ -55,7 +55,7 @@ describe("Given a App component", () => {
 
   describe("When the user clicks on the login button", () => {
     test("Then the login function should be called", async () => {
-      const buttonText = "Login";
+      const buttonText = "the github black and white logo";
       const homeRoute = paths.homepage;
 
       const authStateHookMock: Partial<AuthStateHook> = [null as null];
@@ -69,7 +69,7 @@ describe("Given a App component", () => {
         </MemoryRouter>,
       );
 
-      const loginButton = screen.getByRole("button", { name: buttonText });
+      const loginButton = screen.getByAltText(buttonText);
       await userEvent.click(loginButton);
 
       expect(signInWithPopup).toHaveBeenCalled();
@@ -100,7 +100,7 @@ describe("Given a App component", () => {
   });
 
   describe("When the user is not logged in and it is not loading", () => {
-    test("Then it should show 'Welcome' inside a heading", async () => {
+    test("Then it should show 'Create your account 🤙' inside a heading", async () => {
       const authStateHookMock: Partial<AuthStateHook> = [undefined, undefined];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
 
@@ -113,7 +113,7 @@ describe("Given a App component", () => {
       );
 
       const heading = await screen.findByRole("heading", {
-        name: "Welcome",
+        name: "Create your account 🤙",
       });
 
       expect(heading).toBeInTheDocument();
@@ -148,10 +148,10 @@ describe("Given a App component", () => {
   });
 
   describe("When the user is in a incorrect path and clicks on the 'Back to home' button", () => {
-    test("Then it should show 'Welcome' inside a heading", async () => {
+    test("Then it should show 'Create your account 🤙' inside a heading", async () => {
       const buttonText = "Back to home";
       const playersRoute = "/play";
-      const headingText = "Welcome";
+      const headingText = "Create your account 🤙";
 
       const authStateHookMock: Partial<AuthStateHook> = [undefined, undefined];
       auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
@@ -321,6 +321,29 @@ describe("Given a App component", () => {
       });
 
       expect(buttonToggled[0]).toBeInTheDocument();
+    });
+  });
+
+  describe("When the user clicks on the sign up google button", () => {
+    test("Then the login function should be called", async () => {
+      const buttonText = "the google color logo";
+      const homeRoute = paths.homepage;
+
+      const authStateHookMock: Partial<AuthStateHook> = [null as null];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <MemoryRouter initialEntries={[homeRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const loginButton = screen.getByAltText(buttonText);
+      await userEvent.click(loginButton);
+
+      expect(signInWithPopup).toHaveBeenCalled();
     });
   });
 });
