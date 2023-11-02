@@ -6,9 +6,9 @@ import usePlayersApi from "../../hooks/usePlayersApi";
 import "./NewPlayerPage.css";
 import { useNavigate } from "react-router-dom";
 import paths from "../../paths/paths";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-const NewPlayerPage = () => {
+const NewPlayerPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const { addPlayerApi } = usePlayersApi();
   const navigate = useNavigate();

@@ -10,13 +10,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { lazy, useState } from "react";
 import "./Homepage.css";
 import Button from "../../components/Button/Button";
+import { showFeedback } from "../../components/FeedBack/showFeedBack";
 
 export const HomepagePreview = lazy(() => import("./Homepage"));
 
-const Homepage = () => {
+const Homepage = (): React.ReactElement => {
   const [user] = useAuthState(auth);
-  // const [loginEmail, setLoginEmail] = useState("");
-  // const [loginPassword, setLoginPassword] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
 
@@ -24,24 +23,33 @@ const Homepage = () => {
     return <Navigate to={paths.players} />;
   }
 
-  const registerEmailPassword = async () => {
-    await createUserWithEmailAndPassword(auth, registerPassword, registerEmail);
-  };
-
-  // const loginEmailPassword = async () => {
-  //   try {
-  //     await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
-  //   } catch (error) {
-  //     Error;
-  //   }
-  // };
-
   const loginGithub = async () => {
     await signInWithPopup(auth, gitHubProvider, browserPopupRedirectResolver);
   };
 
   const loginGoogle = async () => {
     await signInWithPopup(auth, googleProvider, browserPopupRedirectResolver);
+  };
+
+  const registerEmailPassword = async () => {
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        registerEmail,
+        registerPassword,
+      );
+      showFeedback("The user has been created succesfully", "success");
+    } catch (error) {
+      showFeedback(
+        "The user couldn't be created or the user already exists",
+        "error",
+      );
+      throw new Error("Can't create the user");
+    }
+  };
+
+  const submitRegister = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
   };
 
   return (
@@ -76,13 +84,13 @@ const Homepage = () => {
           >
             <img
               src="/img/google.svg"
-              alt="the google black and white logo"
+              alt="the google color logo"
               width={20}
               height={20}
             />
           </Button>
         </div>
-        <form className="form-container">
+        <form className="form-container" onSubmit={submitRegister}>
           <input
             type="email"
             placeholder="Email"
