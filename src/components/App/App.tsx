@@ -13,6 +13,7 @@ import Errorpage from "../../pages/ErrorPage/ErrorPage";
 import NewPlayerPage from "../../pages/NewPlayerPage/NewPlayerPage";
 import { PlayerDetailPagePreview } from "../../pages/PlayerDetailPage/PlayerDetailPage";
 import Footer from "../Footer/Footer";
+import LoginPage from "../../pages/LoginPage/LoginPage";
 
 const App = (): React.ReactElement => {
   const [user] = useAuthState(auth);
@@ -60,6 +61,7 @@ const App = (): React.ReactElement => {
               </ProtectedRoute>
             }
           />
+          <Route path={paths.login} element={<LoginPage />} />
           <Route path={paths.root} element={<Navigate to={paths.homepage} />} />
           <Route
             path={paths.error}
