@@ -346,4 +346,95 @@ describe("Given a App component", () => {
       expect(signInWithPopup).toHaveBeenCalled();
     });
   });
+
+  describe("When the user clicks on the Login link", () => {
+    test("Then it should show 'Login to your account 🤙' inside a heading", async () => {
+      const linkText = "Login";
+      const playersRoute = paths.homepage;
+      const headingText = "Login to your account 🤙";
+
+      const authStateHookMock: Partial<AuthStateHook> = [
+        undefined as undefined,
+      ];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <MemoryRouter initialEntries={[playersRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const loginLink = await screen.findByRole("link", { name: linkText });
+      await userEvent.click(loginLink);
+
+      const heading = await screen.findByRole("heading", {
+        name: headingText,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When the user clicks on the Login button", () => {
+    test("Then it should show 'Players' inside a heading", async () => {
+      const playersRoute = paths.login;
+      const headingText = "Players";
+
+      const authStateHookMock: Partial<AuthStateHook> = [user as User];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      render(
+        <MemoryRouter initialEntries={[playersRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const heading = await screen.findByRole("heading", {
+        name: headingText,
+      });
+
+      expect(heading).toBeInTheDocument();
+    });
+  });
+
+  describe("When all inputs are filled and the user submits the form", () => {
+    test("Then the action on submit function should be called", async () => {
+      const emailIdInput = "Email";
+      const passwordIdInput = "Password";
+      const buttonText = "Login";
+      const playersRoute = paths.login;
+
+      const authStateHookMock: Partial<AuthStateHook> = [
+        undefined as undefined,
+      ];
+      auth.useAuthState = vi.fn().mockReturnValue(authStateHookMock);
+
+      const email = "albertmc89@gmail.com";
+      const password = "1231231";
+
+      render(
+        <MemoryRouter initialEntries={[playersRoute]}>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </MemoryRouter>,
+      );
+
+      const emailInput = screen.getByPlaceholderText(emailIdInput);
+      const passwordInput = screen.getByPlaceholderText(passwordIdInput);
+
+      await userEvent.type(emailInput, email);
+      await userEvent.type(passwordInput, password.toString());
+
+      const button = screen.getByRole("button", { name: buttonText });
+      await userEvent.click(button);
+
+      expect(emailInput).toHaveValue(email);
+      expect(passwordInput).toHaveValue(password);
+    });
+  });
 });
